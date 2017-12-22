@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Team Limerence
 Irene Lam, Anish Shenoy, Arif Roktim, Yuyang Zhang
 SoftDev1 pd7
@@ -41,3 +42,7 @@ MID-DEVELOPMENT DESIGN CHANGES
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=======
+yes
+no
+>>>>>>> 3b07f7315e72be601892de629543e21f04b1bf7d
