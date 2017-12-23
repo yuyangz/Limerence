@@ -45,7 +45,6 @@ LESSONS LEARNED
 
 anishS -- 2017-12-22 22:43
 Design Document FDBK summary:
- - Make the component map simpler (but don't cut out too many details)
  - Users need to be able to add their progress
  - Users need to be able to delete reccomendations they don't want
  - Add logout to the sitemap/component map
