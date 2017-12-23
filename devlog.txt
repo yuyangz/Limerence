@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Team Limerence
 Irene Lam, Anish Shenoy, Arif Roktim, Yuyang Zhang
 SoftDev1 pd7
@@ -44,7 +43,7 @@ LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-shenoyA -- 2017-12-22 22:43
+anishS -- 2017-12-22 22:43
 Design Document FDBK summary:
  - Make the component map simpler (but don't cut out too many details)
  - Users need to be able to add their progress
