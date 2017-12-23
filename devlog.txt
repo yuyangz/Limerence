@@ -42,8 +42,7 @@ MID-DEVELOPMENT DESIGN CHANGES
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-anishS -- 2017-12-22 22:43
+anishS -- 2017-12-21 22:43
 Design Document FDBK summary:
  - Users need to be able to add their progress
  - Users need to be able to delete recommendations they don't want
@@ -52,3 +51,15 @@ Design Document Changes:
  - Schedule displays a checkbox asking user for their progress on an activity
  - Recommendations now have a delete option
  - Logout was added to the site map
+
+zhangY —- 2017-12-21 22:43
+Design Document:	
+ - Created component map to show how different parts of project connect to each other.
+ - Assigned roles to individual members of the project.
+ - Summarized project goal for design document.
+
+Everyone - 2017-12-19 to 2017-2022 22:00
+All members worked on design document.
+
+Everyone — 2017-12-14 to 2017-12-19 22:00
+All group members worked to develop idea for project pitch on Tuesday.
