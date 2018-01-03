@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+Create An Account
+{% endblock %}
+
+{% block bg %}
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+<form action="/auth">
+  <h3> Create An Account </h3>
+  <br>
+  Create an Username: <input type = 'text' name="username">
+  <br>
+  Create a Password: <input type = 'password' name="password1">
+  <br>
+  Retype Password: <input type = 'password' name="password2">
+  <br>
+  Age: <input type = 'text' name="age">
+  <br>
+  Height: <input type = 'text' name="height">
+  <br>
+  Weight: <input type = 'text' name="weight">
+  <br>
+  Profile Picture Link: <input type = 'text' name="pfplink">
+  <br>
+  Preferred music genre: <select name="music">
+    <option value="rap">Rap</option>
+    <option value="pop">Pop</option>
+  </select>
+  <br>
+  Preferred exercise: <select name="exercise">
+    <option value="cardiovascular">Rap</option>
+    <option value="strength">Pop</option>
+  </select>
+  <br>
+  Address: <input type = 'text' name="address">
+  <br>
+  Email: <input type = 'text' name="email">
+  <br><br>
+  <input type = 'submit'>
+</form>
+{% endblock %}
+
+{% block footer %}
+Already have an account? Click <a href="/">here</a>!
+{% endblock %}

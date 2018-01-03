@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block bg %}
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+<form action="/welcome">
+  <h3>Login</h3>
+  <!-- Message only shows in the case of an error, e.g. username is incorrect, password is incorrect -->
+      {{message}}
+  <br>
+  Username: <input type = 'text' name="username"> <br>
+  Password: <input type = 'password' name="password">
+  <br><br>
+  <input type = 'submit'>
+</form>
+{% endblock %}
+
+{% block footer %}
+Don't have an account yet? Click <a href="createaccount">here</a>!
+{% endblock %}
