@@ -41,12 +41,21 @@ MID-DEVELOPMENT DESIGN CHANGES
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-zhangY —- 2018-01-02 12:50
-Researched on possible homepage designs with Bootstrap.
-Created base home page with CSS file.
-Created folders for other components of project.
-*Will create calendar plan for project later tonight.
+Everyone — 2017-12-14 to 2017-12-19 22:00
+All group members worked to develop idea for project pitch on Tuesday.
 
+Everyone - 2017-12-19 to 2017-2022 22:00
+All members worked on design document.
+
+lamI -- 2017-12-21 13:19
+- Created site map and page vision detailing all pages including accounts, home, schedule, recommendations, profile and the linkage between each page
+
+zhangY —- 2017-12-21 22:43
+Design Document:	
+ - Created component map to show how different parts of project connect to each other.
+ - Assigned roles to individual members of the project.
+ - Summarized project goal for design document.
+ 
 anishS -- 2017-12-21 22:43
 Design Document FDBK summary:
  - Users need to be able to add their progress
@@ -56,15 +65,9 @@ Design Document Changes:
  - Schedule displays a checkbox asking user for their progress on an activity
  - Recommendations now have a delete option
  - Logout was added to the site map
-
-zhangY —- 2017-12-21 22:43
-Design Document:	
- - Created component map to show how different parts of project connect to each other.
- - Assigned roles to individual members of the project.
- - Summarized project goal for design document.
-
-Everyone - 2017-12-19 to 2017-2022 22:00
-All members worked on design document.
-
-Everyone — 2017-12-14 to 2017-12-19 22:00
-All group members worked to develop idea for project pitch on Tuesday.
+ 
+ zhangY —- 2018-01-02 12:50
+Researched on possible homepage designs with Bootstrap.
+Created base home page with CSS file.
+Created folders for other components of project.
+*Will create calendar plan for project later tonight.
