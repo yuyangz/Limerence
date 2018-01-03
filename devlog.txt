@@ -71,3 +71,6 @@ Researched on possible homepage designs with Bootstrap.
 Created base home page with CSS file.
 Created folders for other components of project.
 *Will create calendar plan for project later tonight.
+
+anishS -- 2018-01-02 13:19
+Added db files
