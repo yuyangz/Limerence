@@ -31,6 +31,7 @@ def close(db): #commits to and closes database
 		address
 		email
 '''
+
 def create_account(userinfo):
 	print "Creating Account...\n"
 	db = get_db()
@@ -49,8 +50,10 @@ def create_account(userinfo):
 	c.execute(command, (username, password, age, height, weight, pfplink, music, excercise, address, email))
 	close(db)
 
-userinfo = {"username": "anish2000", "password":"FOURWORDSALLLOWERCASE", "age": 56, "height": 250, "weight": 100, "pfplink": "http://google.com", "music": "rock", "excercise": "cardio", "address": "345 Chambers St", "email": "email@gmail.com"}
-create_account(userinfo)
+'''userinfo = {"username": "anish2000", "password":"FOURWORDSALLLOWERCASE", "age": 56, "height": 250, "weight": 100, "pfplink": "http://google.com", "music": "rock", "excercise": "cardio", "address": "345 Chambers St", "email": "email@gmail.com"}
+create_account(userinfo)'''
+
+def 
 
 
 	
