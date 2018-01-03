@@ -41,6 +41,11 @@ MID-DEVELOPMENT DESIGN CHANGES
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+zhangY —- 2018-01-02 12:50
+Researched on possible homepage designs with Bootstrap.
+Created base home page with CSS file.
+Created folders for other components of project.
+*Will create calendar plan for project later tonight.
 
 anishS -- 2017-12-21 22:43
 Design Document FDBK summary:
