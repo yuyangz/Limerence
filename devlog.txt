@@ -41,22 +41,28 @@ MID-DEVELOPMENT DESIGN CHANGES
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===========================================
 Everyone — 2017-12-14 to 2017-12-19 22:00
+------------------------------
 All group members worked to develop idea for project pitch on Tuesday.
-
+===========================================
 Everyone - 2017-12-19 to 2017-2022 22:00
+------------------------------
 All members worked on design document.
-
+===========================================
 lamI -- 2017-12-21 13:19
+------------------------------
 - Created site map and page vision detailing all pages including accounts, home, schedule, recommendations, profile and the linkage between each page
 
 zhangY —- 2017-12-21 22:43
+------------------------------
 Design Document:	
  - Created component map to show how different parts of project connect to each other.
  - Assigned roles to individual members of the project.
  - Summarized project goal for design document.
  
 anishS -- 2017-12-21 22:43
+------------------------------
 Design Document FDBK summary:
  - Users need to be able to add their progress
  - Users need to be able to delete recommendations they don't want
@@ -65,12 +71,26 @@ Design Document Changes:
  - Schedule displays a checkbox asking user for their progress on an activity
  - Recommendations now have a delete option
  - Logout was added to the site map
- 
- zhangY —- 2018-01-02 12:50
+===========================================
+zhangY —- 2018-01-02 12:50
+------------------------------
 Researched on possible homepage designs with Bootstrap.
 Created base home page with CSS file.
 Created folders for other components of project.
 *Will create calendar plan for project later tonight.
 
 anishS -- 2018-01-02 13:19
+------------------------------
 Added db files
+
+lamI -- 2018-01-02 13:20
+------------------------------
+- Templates
+    - base.html created to hold navbar and other basic html features, extended through other html files
+    - login.html contains username and password fields to log a user in
+    - createaccount.html contains username, password, age, weight, height, and other necessary profile data (corresponds to database)
+    - welcome.html contains the information pertaining to the website, to be updated
+- app.py contains the necessary routes for creating an account, logging in, authentification, welcome, and logging out
+*Authentification will be continued upon further completion of
+- Modified devlog formatting (oldest -> newest correlates with top -> bottom, separators to distinguish different dates and individuals)
+===========================================
