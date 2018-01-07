@@ -56,11 +56,11 @@ lamI -- 2017-12-21 13:19
 
 zhangY —- 2017-12-21 22:43
 ------------------------------
-Design Document:	
+Design Document:
  - Created component map to show how different parts of project connect to each other.
  - Assigned roles to individual members of the project.
  - Summarized project goal for design document.
- 
+
 anishS -- 2017-12-21 22:43
 ------------------------------
 Design Document FDBK summary:
@@ -71,7 +71,7 @@ Design Document Changes:
  - Schedule displays a checkbox asking user for their progress on an activity
  - Recommendations now have a delete option
  - Logout was added to the site map
-===========================================
+
 zhangY —- 2018-01-02 12:50
 ------------------------------
 Researched on possible homepage designs with Bootstrap.
@@ -81,7 +81,11 @@ Created folders for other components of project.
 
 anishS -- 2018-01-02 13:19
 ------------------------------
-Added db files
+Added Accounts Functionality in db.py
+You can now:
+  1) Create accounts
+  2) Authenticate an account
+  3) Check if a user exists
 
 lamI -- 2018-01-02 13:20
 ------------------------------
@@ -93,4 +97,21 @@ lamI -- 2018-01-02 13:20
 - app.py contains the necessary routes for creating an account, logging in, authentification, welcome, and logging out
 *Authentification will be continued upon further completion of
 - Modified devlog formatting (oldest -> newest correlates with top -> bottom, separators to distinguish different dates and individuals)
-===========================================
+
+anishS -- 2018-01-07 16:55
+-----------------------------
+Database Functionality: Schedules
+1) get_schedule:
+      takes in a username
+      Returns the entire schedule of user as a dictionary
+      format: {time: {activity: "activity", music: "music"}, time: {activity: "activity", music: "music"}, ...}
+2) reset_sched:
+      Takes in Dict in format:
+      {time: {"activity": "ex_activity", "music": "ex_song"], time: {"activity": "ex_activity2", "music": "ex_song2"], ...}
+      "time" is a single int representing the start time (each hour has a section in the table)
+      ex: if time = 4 then the activities corresponding to that time go on from 4am-5am
+3) get_activ_music:
+      Takes in a username and time of day
+      input time is in format of '2011-05-03 17:45:35.177000' (use str(datetime.now()))
+      Returns dict of format {"activity": "ex_activity", "music": "ex_song"}
+- Also imported datetime in app.py
