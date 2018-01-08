@@ -1,10 +1,75 @@
 <html>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <head>
 <title>
       Home
 </title>
-     <link rel="stylesheet" type="text/css" href="static/home.css"> 
+<link rel="stylesheet" type="text/css" href="static/home.css">
+<style>
+  .navbar {
+      margin-bottom: 0;
+  border-radius: 0;
+
+       background-color: transparent;
+   background: transparent;
+   border-color: transparent;
+    }
+
+
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+  height: 100%;
+    background-color: white;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+  padding: 15px;
+ 
+      }
+      .row.content {height:auto;} 
+  }
+
+
+  
+.item-1{
+	position: absolute;
+  display: block;
+	top: 2em;
+  
+  width: 60%;
+  text-align: center;
+  font-size: 2em;
+
+	animation-duration: 10s;
+	animation-timing-function: ease-in;
+	animation-iteration-count: infinite;
+}
+
+.item-1{
+	animation-name: anim-1;
+  }
+
+  @keyframes anim-1 {
+	0%, 8.3% { left: -100%; opacity: 0; }
+  8.3%,25% { left: 25%; opacity: 1; }
+  33.33%, 100% { left: 110%; opacity: 0; }
+}
+  </style>
   </head>
 
 
@@ -12,7 +77,9 @@
 	<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-     
+      <button type="button" class="btn-lg btn-link">Learn More</button>
+      <button type="button" class="btn-lg btn-link">Login</button>
+      <button type="button" class="btn-lg btn-link">Login</button>
     </div>
   </div>
 </nav>
@@ -22,8 +89,10 @@
      <div class="col-sm-2 sidenav">
     
     </div>
-    <div class="col-sm-8 text-left"> 
-      <center><h1>Welcome</h1></center>
+     <div class="col-sm-8 text-left">
+       <center>
+	 <h1 class="item1">Welcome</h1>
+	 </center>
       <hr>
     </div>
   </div>
