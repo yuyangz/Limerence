@@ -31,6 +31,10 @@ OBSTACLES OVERCOME
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Nutritionix API isn't cooperative
+    - Two keys procured (api key and app key) but was unauthorized
+    curl -i -H "Content-Type: application/json,x-app-id={insert key1},x-app-key={insert key2},x-remote-user-id=0" -X GET https://trackapi.nutritionix.com/v2/search/instant?query=watermelon
+    {"message":"unauthorized","id":"42424e8c-5a5c-451f-98c4-b0f01fd77887"}
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -38,6 +42,7 @@ COOL STUFF LEARNED
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Nutritionix API changed to back-up Edamam API (same functionality but requires two passes and more parsing)
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -132,3 +137,8 @@ OpenWeatherMap API:
 zhangY — 2017-01-08 23:50
 - Updated templates
 - Added bootstrap/CSS for homepage, login, and create account.
+
+lamI -- 2018-01-08 13:19
+------------------------------
+- Updated Unresolved Issuese and Mid-Development Design Changes
+- Procured Edamam keys
