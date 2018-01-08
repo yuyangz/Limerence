@@ -50,6 +50,7 @@ Everyone - 2017-12-19 to 2017-2022 22:00
 ------------------------------
 All members worked on design document.
 ===========================================
+
 lamI -- 2017-12-21 13:19
 ------------------------------
 - Created site map and page vision detailing all pages including accounts, home, schedule, recommendations, profile and the linkage between each page
@@ -127,3 +128,7 @@ OpenWeatherMap API:
     - Converted unix time to a more conventional, readable format + pretty printed
     - Hard coded NY as GMT-5 (relevant to New York users)
 - Everything tested and debugged (except hardcoded GMT)
+
+zhangY — 2017-01-08 23:50
+- Updated templates
+- Added bootstrap/CSS for homepage, login, and create account.
