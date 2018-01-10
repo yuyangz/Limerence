@@ -26,11 +26,13 @@ def hello_world():
     '''
     if "username" in session.keys():
         return render_template("welcome.html", name = session["username"])
-    return render_template("login.html", message = "")
+    return render_template("home.html")
 
 @app.route("/createaccount")
 def create_account():
     return render_template("createaccount.html")
+    
+
 
 @app.route("/auth")
 def check_creation():
@@ -62,11 +64,16 @@ def logged_in():
             session["username"] = input_name #Creates a new session
             global username
             username = input_name
-            return render_template("welcome.html", name = input_name)
+            return render_template("welcome.html")
         else:
             return render_template("login.html", message = "Error: Wrong password")
    else:
         return render_template("login.html", message =  "Error: Wrong username")
+
+@app.route("/login")
+def log_in():
+    return render_template("login.html")
+
 
 @app.route("/logout")
 def logged_out():

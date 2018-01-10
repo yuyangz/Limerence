@@ -10,26 +10,29 @@
       margin-bottom: 0;
   border-radius: 0;
 
-       background-color: transparent;
-   background: transparent;
+       background-color: #f7d1b7;
+  
    border-color: transparent;
     }
 
 
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
+  .row.content {height: 100%
+
+  }
     
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
-      background-color: #f1f1f1;
   height: 100%;
-    background-color:  #E8A87C;
-    }
+   
+  }
+
+ 
     
     /* Set black background color, white text and some padding */
     footer {
-      background-color: #555;
+     
       color: white;
       padding: 15px;
     }
@@ -41,34 +44,47 @@
   padding: 15px;
  
       }
-      .row.content {height:auto;} 
+  .row.content { height:auto;
+  } 
   }
 
 
-  
-.item-1{
-	position: absolute;
-  display: block;
-	top: 2em;
-  
-  width: 60%;
-  text-align: center;
-  font-size: 2em;
-
-	animation-duration: 10s;
-	animation-timing-function: ease-in;
-	animation-iteration-count: infinite;
+  div.slide-left {
+  width:100%;
+  overflow:hidden;
+}
+div.slide-left h1 {
+  animation: slide-left 5s;
 }
 
-.item-1{
-	animation-name: anim-1;
+@keyframes slide-left {
+  from {
+    margin-left: 100%;
+    width: 300%; 
   }
 
-  @keyframes anim-1 {
-	0%, 8.3% { left: -100%; opacity: 0; }
-  8.3%,25% { left: 25%; opacity: 1; }
-  33.33%, 100% { left: 110%; opacity: 0; }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+  }
+
+  .body {
+  background-color: #333333;
 }
+
+.carousel-content {
+    color:black;
+    display:flex;
+    align-items:center;
+}
+
+#text-carousel {
+  width: 100%;
+  height: auto;
+  padding: 50px;
+  }
+  
   </style>
   </head>
 
@@ -77,27 +93,75 @@
 	<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-          <button type="button" class="btn-lg btn-link">Home</button>
-      <button type="button" class="btn-lg btn-link">Learn More</button>
-      <button type="button" class="btn-lg btn-link">Login</button>
-      <button type="button" class="btn-lg btn-link">Create Account</button>
-    </div>
+        <a href= "/"><button type="button" class="btn-lg btn-link">Home</button></a>
+     <a href= "/login"><button type="button" class="btn-lg btn-link">Login</button></a>
+     <a href= "/createaccount"><button type="button" class="btn-lg btn-link">Create Account</button></a>
+   </div>
   </div>
 </nav>
   
-<div class="container-fluid text-center">    
+<div class="container-fluid text-center" style = "background-color:  #E8A87C;">    
   <div class="row content">
-     <div class="col-sm-2 sidenav">
+     <div class="col-sm-2 sidenav" style = "background-color:  #E8A87C;">
     
     </div>
-     <div class="col-sm-8 text-left">
-       <center>
-	 <h1 class="item-1">Welcome</h1>
-	 </center>
-      <hr>
+     <div class="col-sm-8 text-left">  
+       <div class="slide-left">
+<h1>Welcome</h1>
+       </div>
+       
+       <hr>
+
+<div id="text-carousel" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+    <div class="row">
+        <div class="col-xs-offset-3 col-xs-6">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="carousel-content">
+                        <div>
+                            <p>Sapiente, ducimus, voluptas, mollitia voluptatibus nemo explicabo sit blanditiis laborum dolore illum fuga veniam quae expedita libero accusamus quas harum ex numquam necessitatibus provident deleniti tenetur iusto officiis recusandae corporis culpa quaerat?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, sint fuga temporibus nam saepe delectus expedita vitae magnam necessitatibus dolores tempore consequatur dicta cumque repellendus eligendi ducimus placeat! </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="carousel-content">
+                        <div>                          
+                            <p>Sapiente, ducimus, voluptas, mollitia voluptatibus nemo explicabo sit blanditiis laborum dolore illum fuga veniam quae expedita libero accusamus quas harum ex numquam necessitatibus provident deleniti tenetur iusto officiis recusandae corporis culpa quaerat?</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- Controls --> <a class="left carousel-control" href="#text-carousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+ <a class="right carousel-control" href="#text-carousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+
+</div>
+
+
+
+       
     </div>
   </div>
 </div>
 
 </body>
 </html>
+
+
+
+
+
