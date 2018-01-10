@@ -98,16 +98,35 @@
       <br>
      <form>
     <div class="form-group">
-      <label for="sel1">Select list (select one):</label>
+      <label for="sel1">Select music (select one):</label>
       <select class="form-control" id="sel1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
+        <option>Hip-hop</option>
+        <option>Pop</option>
+        <option>Country</option>
+        <option>Rock</option>
+      </select>
+    </div>
+     <div class="form-group">
+      <label for="sel1">Select exercise (select one):</label>
+      <select class="form-control" id="sel1">
+        <option>Cardiovascular</option>
+        <option>Strength</option>
       </select>
     </div>
     </form>
 	</div>
+	  <div class="form-group">
+      <label for="address">Address:</label>
+      <input type="address" class="form-control" id="address" placeholder="Enter address" name="address">
+      <br>
+      </div>
+ <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      <br>
+      </div>
+
+      
 	  <button type="submit" class="btn btn-default">Submit</button>
     </form>
     <br>
@@ -129,36 +148,3 @@
 
 </html>
 
-<form action="/auth">
-  <h3> Create An Account </h3>
-  <br>
-  Create an Username: <input type = 'text' name="username">
-  <br>
-  Create a Password: <input type = 'password' name="password1">
-  <br>
-  Retype Password: <input type = 'password' name="password2">
-  <br>
-  Age: <input type = 'text' name="age">
-  <br>
-  Height: <input type = 'text' name="height">
-  <br>
-  Weight: <input type = 'text' name="weight">
-  <br>
-  Profile Picture Link: <input type = 'text' name="pfplink">
-  <br>
-  Preferred music genre: <select name="music">
-    <option value="rap">Rap</option>
-    <option value="pop">Pop</option>
-  </select>
-  <br>
-  Preferred exercise: <select name="exercise">
-    <option value="cardiovascular">Cardiovascular</option>
-    <option value="strength">Strength</option>
-  </select>
-  <br>
-  Address: <input type = 'text' name="address">
-  <br>
-  Email: <input type = 'text' name="email">
-  <br><br>
-  <input type = 'submit'>
-</form>
