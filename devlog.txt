@@ -172,3 +172,15 @@ Edamam API:
 - Based on Edamam's natural language processing, the closest suggestion to the original item the user wanted is used for the uri in step 3
 - Retrieved calories, diet labels, health labels, and cautions
 - Everything tested and debugged
+
+zhangY — 2018-01-10 23:40
+- Connected navbar
+	- Modified parts in app.py so buttons in the navbar will have available paths
+	- Created routes for nabber.
+- Updated CSS/Bootstrap
+	- Changed the Welcome moving text
+		- Used another variation of Bootstrap/CSS/HTML
+		-Current version stays on screen after sliding across.
+	- Attempted the addition of a carousel
+		- Carousel currently does not move.
+		- Clicking the arrow on the carousel brings to another route.
