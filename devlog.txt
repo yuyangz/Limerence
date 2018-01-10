@@ -142,3 +142,33 @@ lamI -- 2018-01-08 13:19
 ------------------------------
 - Updated Unresolved Issuese and Mid-Development Design Changes
 - Procured Edamam keys
+
+anishS - 2018-01-09 23:06
+------------------------------
+Added More Database Functions:
+1) get_all_user_preferences(username):
+    Returns a dictionary of all the users preferences
+    Takes in a username
+2) get_user_pref(username, preference):
+    Returns the value of a user's preference
+    Takes in a username and one preference
+    preference can be one of: "age", "height", "weight", "pfplink", "music", "excercise", "address", "email"
+3) edit_user_pref(username, preference, new_val):
+    Edits one of the user's attributes
+    Takes in a username, the preference to change, and the new value
+    preference can be one of: "age", "height", "weight", "pfplink", "music", "excercise", "address", "email"
+    Returns the original value
+Things discovered: Remember to db.commit()
+
+lamI -- 2018-01-10 00:50
+------------------------------
+Edamam API:
+- How it works (both Edamam and edamam.py):
+    1. user names a food item to Edamam (e.g. green apple)
+    2. Edamam returns a series of potential uris with a corresponding label on what the uri details
+    3. one uri is then chosen and fitted into a JSON format
+    4. The JSON is sent to the Edamam API
+    5. Edamam returns the nutrition values and relevant information
+- Based on Edamam's natural language processing, the closest suggestion to the original item the user wanted is used for the uri in step 3
+- Retrieved calories, diet labels, health labels, and cautions
+- Everything tested and debugged
