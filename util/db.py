@@ -72,6 +72,9 @@ def check_account_exist(username):
     close(db)
     return False
 
+'''
+Autheticates Account
+'''
 def check_account(username, password):
     db = get_db()
     c = get_cursor(db)
@@ -82,6 +85,76 @@ def check_account(username, password):
         return passdb[0] == password
     close(db)
     return False
+
+'''
+Returns a dictionary of all the users preferences
+Takes in a username
+'''
+def get_all_user_preferences(username):
+    db = get_db()
+    c = get_cursor(db)
+    if check_account_exist(username):
+        pref_names = ["age", "height", "weight", "pfplink", "music", "excercise", "address", "email"]
+        command = "SELECT {} FROM accounts WHERE username = ?".format(", ".join(pref_names))
+        #print command
+        prefs_tup = c.execute(command, (username, )).fetchone()
+        db.commit()
+        close(db)
+        #print prefs_tup
+        prefs_dict = {}
+        for pref in range(len(pref_names)):
+            #print pref
+            prefs_dict[pref_names[pref]] = prefs_tup[pref]
+        return prefs_dict
+    else:
+        print "Username Not Found - Unable to get preferences"
+    close(db)
+
+'''
+Returns the value of a user's preference
+Takes in a username and one preference
+preference can be one of: "age", "height", "weight", "pfplink", "music", "excercise", "address", "email"
+'''
+def get_user_pref(username, preference):
+    db = get_db()
+    c = get_cursor(db)
+    pref_names = ["age", "height", "weight", "pfplink", "music", "excercise", "address", "email"]
+    if check_account_exist(username):
+        if preference in pref_names:
+            command = "SELECT " + preference + " FROM accounts WHERE username = ?"
+            pref = c.execute(command, (username, )).fetchone()
+            db.commit()
+            close(db)
+            return pref
+        else:
+            print "Preference DNE"
+    else:
+        print "Username Not Found - Unable to get preference"
+    close(db)
+'''
+Edits one of the user's attributes
+Takes in a username, the preference to change, and the new value
+preference can be one of: "age", "height", "weight", "pfplink", "music", "excercise", "address", "email"
+Returns the original value
+'''
+
+def edit_user_pref(username, preference, new_val):
+    db = get_db()
+    c = get_cursor(db)
+    pref_names = ["age", "height", "weight", "pfplink", "music", "excercise", "address", "email"]
+    if check_account_exist(username):
+        if preference in pref_names:
+            old_val = get_user_pref(username, preference)
+            command = "UPDATE accounts SET " + preference + " = ? WHERE username = ?"
+            c.execute(command, (new_val, username))
+            db.commit()
+            close(db)
+            return old_val
+        else:
+            print "Preference DNE"
+    else:
+        print "Username not found - Cannot Edit Preference"
+    close(db)
 
 #============================================================#
 #============================Schedules=========================#
@@ -104,7 +177,7 @@ def get_schedule(username):
         return d
     else:
         print "Username not found - Could not get schedule"
-        close(db)
+    close(db)
 
 '''
 Takes in Dict in format:
@@ -154,4 +227,7 @@ print(get_schedule("anish2000"))
 get_activ_music("anish2000", "2011-05-03 12:45:35.177000")
 get_activ_music("anish2000", "2014-23-03 13:45:35.177000")
 get_activ_music("anish2000", "2033-05-05 14:45:35.177000")
+print(get_all user_preferences("anish2000"))
+print(edit_user_pref("anish2000", "email", "bobz2000@stuy.edu"))
+print(get_user_pref("anish2000", "email"))
 '''
