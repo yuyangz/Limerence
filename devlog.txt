@@ -184,3 +184,20 @@ zhangY — 2018-01-10 23:40
 	- Attempted the addition of a carousel
 		- Carousel currently does not move.
 		- Clicking the arrow on the carousel brings to another route.
+
+lamI -- 2018-01-11 03:01
+------------------------------
+1. schedule.py
+- Assigns slots for refreshing the activity (WIP), time, activity, and music recommendation
+- Takes in the current time and modifies the schedule accordingly (e.g. if it's 2AM, the schedule starts at 02:00)
+- Activities placed in time slots
+    - Workout (3 hours) is placed in the earliest slot possible (to be changed when a more specific time is agreed upon)
+    - Breakfast, Lunch, and Dinner all have ranges and are placed in the earliest slot possible
+        - Breakfast: 6AM - 11 AM
+        - Lunch: 12PM - 4 PM
+        - Dinner: 5PM - 10PM
+- Note: for reasons unknown, refreshing/clearing the activity takes out the entire activity section
+2. Miscellaneous
+- Schedule.html renders information taken from schedule.py
+- Added routes in app.py with necessary variables
+- Tested and debugged throughout (working on refreshing/clearing)

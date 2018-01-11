@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}
+    Workout Schedule
+{% endblock %}
+{% block content %}
+
+
+    Welcome {{name}}
+    <br><br>
+
+    <table>
+        <tr>
+            <th>Clear</th>
+            <th>Time</th>
+            <th>Activity</th>
+            <th>Music Recommendation</th>
+        </tr>
+        {% for i in clock %}
+        <tr>
+            <td><center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">X</a> </center></td>
+            <td>{{i}}:00</td>
+            <td>{{sch[i]}}</td>
+            <td>
+                {% if song[i] == '(EMPTY)' %}
+                (EMPTY)
+                {% else %}
+                <a href="{{song[i]}}">Song~</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

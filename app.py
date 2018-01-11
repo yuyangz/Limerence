@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, session, redirect, flash, url
 #from util import db
 from util import db
 from datetime import datetime
+from util import schedule
+from time import localtime
 
 import os, cgi, hashlib
 
@@ -17,6 +19,23 @@ def get_username():
     global username
     return username
 
+@app.route("/scheduler")
+def scheduler():
+    sch = schedule.new_schedule()
+    return render_template("schedule.html", name="User", sch=sch[0], song=sch[1], clock=range(localtime()[3], 24))
+
+
+@app.route("/rmSchedule")
+def rm_schedule():
+    sch = request.args.getlist('sch')
+    song = request.args.getlist('song')
+    print("sch",sch)
+    print("song", song)
+    id = request.args["id"]
+    sch1, song1 = schedule.clear_schedule(sch, song, interval=id)
+    # print("Schedule >>",sch1)
+    return render_template("schedule.html", name="User", sch=sch1, song=song1, clock=range(localtime()[3], 24))
+
 
 @app.route("/")
 def hello_world():
@@ -31,7 +50,7 @@ def hello_world():
 @app.route("/createaccount")
 def create_account():
     return render_template("createaccount.html")
-    
+
 
 
 @app.route("/auth")
@@ -81,6 +100,7 @@ def logged_out():
         return redirect(url_for("hello_world"))
     session.pop("username") #Ends session
     return redirect("/") #Redirecting to login
+
 
 if __name__ == "__main__":
     app.debug = True
