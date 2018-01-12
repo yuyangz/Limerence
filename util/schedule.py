@@ -1,6 +1,5 @@
 import time
 
-
 # Constants
 EMPTY = '(EMPTY)'
 BREAKFAST = 'Breakfast'
@@ -14,15 +13,16 @@ WORKOUT3 = 'postWorkout Session'
 
 def get_music(time):
     # call from other class when completed.
-    return ''   # default value for now
+    return ''  # default value for now
 
 
 def clear_schedule(schedule, song_list, interval=None):
+    # print(schedule)
     if interval is None:
         return new_schedule()
-    if 0 <= interval <= 23:
-        schedule[interval], song_list[interval] = EMPTY, EMPTY
-    # print_schedule(schedule, song_list)
+    num = int(interval)
+    if 0 <= num <= 23:
+        schedule[num], song_list[num] = EMPTY, EMPTY
     return schedule, song_list
 
 
@@ -88,14 +88,15 @@ def attempt_workout(schedule, song_list, start_time):
     return True
 
 
-def new_schedule(curr_time = time.localtime()):
+def new_schedule(curr_time=time.localtime()):
     print('It is currently {:02}:{:02}'.format(curr_time[3], curr_time[4]))
     schedule = [EMPTY] * 24  # military standard time
     song_list = [EMPTY] * 24  # military standard time
-    attempt_breakfast(schedule, song_list, curr_time[3] + 1)
-    attempt_lunch(schedule, song_list, curr_time[3] + 1)
-    attempt_dinner(schedule, song_list, curr_time[3] + 1)
-    attempt_workout(schedule, song_list, curr_time[3] + 1)
+    start_hr = 5     # curr_time[3] + 1
+    attempt_breakfast(schedule, song_list, start_hr)
+    attempt_lunch(schedule, song_list, start_hr)
+    attempt_dinner(schedule, song_list, start_hr)
+    attempt_workout(schedule, song_list, start_hr)
 
     return schedule, song_list
 
@@ -114,4 +115,3 @@ if __name__ == '__main__':
     # print_schedule(schedule, song_list)
     clear_schedule(schedule, song_list, interval=3)
     print_schedule(schedule, song_list)
-

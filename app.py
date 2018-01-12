@@ -14,6 +14,8 @@ app = Flask (__name__)
 app.secret_key = os.urandom(32)
 
 global username
+global g_schedule
+global g_song_lists
 
 def get_username():
     global username
@@ -21,20 +23,23 @@ def get_username():
 
 @app.route("/scheduler")
 def scheduler():
+    global g_schedule
+    global g_song_lists
+
     sch = schedule.new_schedule()
-    return render_template("schedule.html", name="User", sch=sch[0], song=sch[1], clock=range(localtime()[3], 24))
+    g_schedule = sch[0]
+    g_song_lists = sch[1]
+    return render_template("schedule.html", name="User", sch=g_schedule, song=g_song_lists, clock=range(localtime()[3], 24))
 
 
 @app.route("/rmSchedule")
 def rm_schedule():
-    sch = request.args.getlist('sch')
-    song = request.args.getlist('song')
-    print("sch",sch)
-    print("song", song)
+    global g_schedule
+    global g_song_lists
+
     id = request.args["id"]
-    sch1, song1 = schedule.clear_schedule(sch, song, interval=id)
-    # print("Schedule >>",sch1)
-    return render_template("schedule.html", name="User", sch=sch1, song=song1, clock=range(localtime()[3], 24))
+    g_schedule, g_song_lists = schedule.clear_schedule(g_schedule, g_song_lists, interval=id)
+    return render_template("schedule.html", name="User", sch=g_schedule, song=g_song_lists, clock=range(localtime()[3], 24))
 
 
 @app.route("/")

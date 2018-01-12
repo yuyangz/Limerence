@@ -201,3 +201,7 @@ lamI -- 2018-01-11 03:01
 - Schedule.html renders information taken from schedule.py
 - Added routes in app.py with necessary variables
 - Tested and debugged throughout (working on refreshing/clearing)
+
+lamI -- 2018-01-11 23:17
+------------------------------
+- Fixed error on refreshing (where clicking the "X" denoting a refresh removed the entire activity section) by making the schedule and song recommendations global
