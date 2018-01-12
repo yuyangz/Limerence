@@ -7,10 +7,11 @@
 <link rel="stylesheet" type="text/css" href="static/home.css">
 <style>
   .navbar {
+  background-color: #DEECF4;
       margin-bottom: 0;
   border-radius: 0;
 
-       background-color: #f7d1b7;
+    
   
    border-color: transparent;
     }
@@ -73,87 +74,60 @@ div.slide-left h1 {
   background-color: #333333;
 }
 
-.carousel-content {
-    color:black;
-    display:flex;
-    align-items:center;
+
+
+#grad1 {
+    height: 100%;
+    background: #619DCF; /* For browsers that do not support gradients */
+    background: linear-gradient(to bottom right, #619DCF, white); /* Standard syntax (must be last) */
 }
 
-#text-carousel {
-  width: 100%;
-  height: auto;
-  padding: 50px;
+h1 {
+ font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+  font-weight: 200;
+  letter-spacing: 1px;
+  color: #E9F2F7;
   }
-  
+
+  li{
+  font-weight: bold;
+  }
   </style>
   </head>
 
 
       <body>
-	<nav class="navbar navbar-inverse">
+
+
+
+<nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-        <a href= "/"><button type="button" class="btn-lg btn-link">Home</button></a>
-     <a href= "/login"><button type="button" class="btn-lg btn-link">Login</button></a>
-     <a href= "/createaccount"><button type="button" class="btn-lg btn-link">Create Account</button></a>
-   </div>
+      <a class="navbar-brand" href="/">WELCOME</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">HOME</a></li>
+      <li><a href="/login">LOGIN</a></li>
+      <li><a href="/createaccount">CREATE ACCOUNT</a></li>
+    </ul>
   </div>
 </nav>
-  
-<div class="container-fluid text-center" style = "background-color:  #E8A87C;">    
+
+	
+<div class="container-fluid text-center" >    
   <div class="row content">
-     <div class="col-sm-2 sidenav" style = "background-color:  #E8A87C;">
-    
-    </div>
-     <div class="col-sm-8 text-left">  
+
+     <div class="col-sm-12 text-left"  id="grad1">  
        <div class="slide-left">
-<h1>Welcome</h1>
+<h1>HOME</h1>
        </div>
        
        <hr>
 
-<div id="text-carousel" class="carousel slide" data-ride="carousel">
-    <!-- Wrapper for slides -->
-    <div class="row">
-        <div class="col-xs-offset-3 col-xs-6">
-            <div class="carousel-inner">
-                <div class="item active">
-                    <div class="carousel-content">
-                        <div>
-                            <p>Sapiente, ducimus, voluptas, mollitia voluptatibus nemo explicabo sit blanditiis laborum dolore illum fuga veniam quae expedita libero accusamus quas harum ex numquam necessitatibus provident deleniti tenetur iusto officiis recusandae corporis culpa quaerat?</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="carousel-content">
-                        <div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, sint fuga temporibus nam saepe delectus expedita vitae magnam necessitatibus dolores tempore consequatur dicta cumque repellendus eligendi ducimus placeat! </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="carousel-content">
-                        <div>                          
-                            <p>Sapiente, ducimus, voluptas, mollitia voluptatibus nemo explicabo sit blanditiis laborum dolore illum fuga veniam quae expedita libero accusamus quas harum ex numquam necessitatibus provident deleniti tenetur iusto officiis recusandae corporis culpa quaerat?</p>
-                        </div>
-                    </div>
-                </div>
-                
+       <div class="header-content mx-auto">
+              <h1 class="mb-5" style= "color: #58819F">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</h1>
+         
             </div>
-        </div>
-    </div>
-    <!-- Controls --> <a class="left carousel-control" href="#text-carousel" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
- <a class="right carousel-control" href="#text-carousel" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-
-</div>
-
-
-
-       
     </div>
   </div>
 </div>

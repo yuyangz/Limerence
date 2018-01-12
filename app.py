@@ -2,12 +2,38 @@ from flask import Flask, render_template, request, session, redirect, flash, url
 #from util import db
 from util import db
 from datetime import datetime
+from util import schedule
+from time import localtime
 
 import os, cgi, hashlib
 
 app = Flask (__name__)
 
 app.secret_key = os.urandom(32)
+
+global g_schedule
+global g_song_lists
+
+@app.route("/scheduler")
+def scheduler():
+    global g_schedule
+    global g_song_lists
+
+    sch = schedule.new_schedule()
+    g_schedule = sch[0]
+    g_song_lists = sch[1]
+    return render_template("schedule.html", name="User", sch=g_schedule, song=g_song_lists, clock=range(localtime()[3], 24))
+
+
+@app.route("/rmSchedule")
+def rm_schedule():
+    global g_schedule
+    global g_song_lists
+
+    id = request.args["id"]
+    g_schedule, g_song_lists = schedule.clear_schedule(g_schedule, g_song_lists, interval=id)
+    return render_template("schedule.html", name="User", sch=g_schedule, song=g_song_lists, clock=range(localtime()[3], 24))
+
 
 @app.route("/")
 def hello_world():
@@ -73,6 +99,7 @@ def logged_out():
         return redirect(url_for("hello_world"))
     session.pop("username") #Ends session
     return redirect("/") #Redirecting to login
+
 
 if __name__ == "__main__":
     app.debug = True
