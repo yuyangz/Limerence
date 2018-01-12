@@ -34,6 +34,15 @@ def rm_schedule():
     g_schedule, g_song_lists = schedule.clear_schedule(g_schedule, g_song_lists, interval=id)
     return render_template("schedule.html", name="User", sch=g_schedule, song=g_song_lists, clock=range(localtime()[3], 24))
 
+@app.route("/recommendations")
+def recommendations():
+    global g_schedule
+    global g_song_lists
+
+    sch = schedule.new_schedule()
+    g_schedule = sch[0]
+    g_song_lists = sch[1]
+    return render_template("recommendations.html", name="User", sch=g_schedule, song=g_song_lists, clock=range(localtime()[3], 24))
 
 @app.route("/")
 def hello_world():
