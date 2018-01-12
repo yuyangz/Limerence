@@ -39,19 +39,21 @@ def create_account(userinfo):
 
     #Add User Properties
     command1 = "INSERT INTO accounts VALUES(?, ?, ?, ?, ?, ?, ? ,? ,?, ?)"
-    try:
-        username = userinfo["username"]
-        password = userinfo["password"]
-        age = userinfo["age"]
-        height = userinfo["height"]
-        weight = userinfo["weight"]
-        pfplink = userinfo["pfplink"]
-        music = userinfo["music"]
-        exercise = userinfo["excercise"]
-        address = userinfo["address"]
-        email = userinfo["email"]
-    except:
-        return ""
+    username = userinfo["username"]
+    password = userinfo["pwd1"]
+    password = hashlib.sha224(password)
+    password = password.hexdigest()
+    age = userinfo["age"]
+    height = userinfo["height"]
+    weight = userinfo["weight"]
+    #pfplink = userinfo["pfplink"]
+    pfplink = "empty for now"
+    music = userinfo["sel1"]
+    exercise = userinfo["sel2"]
+    address = userinfo["address"]
+    email = userinfo["email"]
+    #print "Error. Account not created\n"
+    #return ""
     c.execute(command1, (username, password, age, height, weight, pfplink, music, exercise, address, email))
 
     #Create User Schedule Table
@@ -78,6 +80,8 @@ Autheticates Account
 def check_account(username, password):
     db = get_db()
     c = get_cursor(db)
+    password = hashlib.sha224(password)
+    password = password.hexdigest()
     if(check_account_exist(username)):
         command = "SELECT password FROM accounts WHERE username = ? "
         passdb = c.execute(command, (username, )).fetchone()

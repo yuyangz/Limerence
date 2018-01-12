@@ -8,6 +8,12 @@
   </head>
 
   <body bgcolor="#F5B039">
+    {# Display flashed messages #}
+    {% set messages = get_flashed_messages() %}
+
+    {% for msg in messages %}
+    <h1>{{msg}}</h1>
+    {% endfor %}
     {% block navbar %}
 
     {% endblock %}
