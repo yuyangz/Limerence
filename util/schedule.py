@@ -1,4 +1,5 @@
 import time
+import spotify
 
 # Constants
 EMPTY = '(EMPTY)'
@@ -13,7 +14,7 @@ WORKOUT3 = 'postWorkout Session'
 
 def get_music(time):
     # call from other class when completed.
-    return ''  # default value for now
+    return spotify.get_song("pop", 0.25)  # (genre, energy)
 
 
 def clear_schedule(schedule, song_list, interval=None):
@@ -97,7 +98,7 @@ def new_schedule(curr_time=time.localtime()):
     attempt_lunch(schedule, song_list, start_hr)
     attempt_dinner(schedule, song_list, start_hr)
     attempt_workout(schedule, song_list, start_hr)
-
+    print song_list
     return schedule, song_list
 
 

@@ -205,3 +205,18 @@ lamI -- 2018-01-11 03:01
 lamI -- 2018-01-11 23:17
 ------------------------------
 - Fixed error on refreshing (where clicking the "X" denoting a refresh removed the entire activity section) by making the schedule and song recommendations global
+
+anishS -- 2018-01-15 18:32
+------------------------------
+Implemented SPOTIFY API
+Spotify.py:
+  get_access_token():
+    Gets An Access token for spotify api
+  get_song(genre, energy):
+    Takes in genre (all lowercase), danceability(0.0 to 1.0), and energy(0.0 to 1.0)
+    Chooses a random song that fits the requirements
+    Returns a URI to embed that song on the webpage using iframe
+
+schedule.py:
+  changed get_music(time) to return a random pop song.
+  TODO: make get_music "dynamic" and return different song types and genres

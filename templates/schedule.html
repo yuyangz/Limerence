@@ -15,8 +15,8 @@
       margin-bottom: 0;
   border-radius: 0;
 
-    
-  
+
+
    border-color: transparent;
     }
 
@@ -25,32 +25,32 @@
   .row.content {height: 100%;
 
   }
-    
+
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
   height: 100%;
-   
+
   }
 
- 
-    
+
+
     /* Set black background color, white text and some padding */
     footer {
-     
+
       color: white;
       padding: 15px;
     }
-    
+
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
         height: auto;
   padding: 15px;
- 
+
       }
   .row.content { height:auto;
-  } 
+  }
   }
 
 
@@ -65,7 +65,7 @@ div.slide-left h1 {
 @keyframes slide-left {
   from {
     margin-left: 100%;
-    width: 300%; 
+    width: 300%;
   }
 
   to {
@@ -117,14 +117,14 @@ h1 {
   </div>
 </nav>
 
-	
-<div class="container-fluid text-center" >    
+
+<div class="container-fluid text-center" >
   <div class="row content">
   <div class="col-sm-2 sidenav" style= "background-color:white;">
-     
+
     </div>
-    
-     <div class="col-sm-8 text-left"  id="grad1">  
+
+     <div class="col-sm-8 text-left"  id="grad1">
        <div class="slide-left">
 	 <h1>Welcome {{name}} to your SCHEDULE</h1>
 
@@ -150,20 +150,17 @@ h1 {
                 {% if song[i] == '(EMPTY)' %}
                 (EMPTY)
                 {% else %}
-                <a href="{{song[i]}}">Song~</a>
+                    <iframe src="https://open.spotify.com/embed?uri={{song[i]}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
                 {% endif %}
             </td>
       </tr>
             {% endfor %}
     </tbody>
 </table>
-   <script src="../static/schedule.js"></script>	 
+   <script src="../static/schedule.js"></script>
        </div>
-       
+
        <hr>
 
       </body>
       </html>
-
-
-   

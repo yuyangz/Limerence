@@ -94,7 +94,7 @@ def logged_in():
     pass
     if "username" not in session.keys():
         return redirect(url_for("login"))
-    return render_template("home.html")
+    return render_template("welcome.html")
 
 
 @app.route("/login")
