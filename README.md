@@ -25,7 +25,7 @@ Backend is managed through SQLite for databases. Various APIS are used for retre
 <br>
 ```
 . <.name>\bin\activate
-  ```
+```
 <br>
 - Install necessary packages
   <br>
