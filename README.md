@@ -11,6 +11,7 @@ Our project is a lifestyle app where users will be able to monitor and receive s
 -Edamam
 <br>
 -4Square
+<br>
 *Instructions regarding APIS can be found on their respective sites.*
 <br>
 <h2> Running application</h2>
