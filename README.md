@@ -23,20 +23,20 @@ Backend is managed through SQLite for databases. Various APIS are used for retre
 <br>
 - Enter virtual environment
 <br>
-'''
+```
 . <name>\bin\activate
-  '''
+  ```
 <br>
 - Install necessary packages
   <br>
-  '''
+  ```
   pip install requests
-  '''
+  ```
 <br>
 - Run application.
   <br>
-  '''
+  ```
   python app.py
-  '''
+  ```
 <br>
 *App should now be running!*
