@@ -14,9 +14,9 @@ Backend is managed through SQLite for databases. Various APIS are used for retre
 
 -Edamam
 
--4Square
+-FourSquare
 
-*Instructions regarding APIS can be found on their respective sites.*
+*Instructions regarding APIs can be found on their respective sites.*
 
 ## Running application
 - Pull repository
