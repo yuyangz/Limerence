@@ -24,7 +24,7 @@ Backend is managed through SQLite for databases. Various APIS are used for retre
 - Enter virtual environment
 <br>
 ```
-. <name>\bin\activate
+. <.name>\bin\activate
   ```
 <br>
 - Install necessary packages
