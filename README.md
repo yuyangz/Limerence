@@ -40,3 +40,9 @@ Backend is managed through SQLite for databases. Various APIS are used for retre
   ```
 <br>
 *App should now be running!*
+
+
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
