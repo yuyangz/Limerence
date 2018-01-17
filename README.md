@@ -29,13 +29,13 @@ Backend is managed through SQLite for databases. Various APIS are used for retre
 <br>
 - Install necessary packages
   <br>
-  ```
+  ```python
   pip install requests
   ```
 <br>
 - Run application.
   <br>
-  ```
+  ```python
   python app.py
   ```
 <br>
