@@ -4,15 +4,22 @@ Our project is a lifestyle app where users will be able to monitor and receive s
 <br>
 <h1>Keys That Must Be Acquired</h1>
 <br>
--Spotify 
+-Spotify
+<br>
 -OpenWeatherMap
+<br>
 -Edamam
+<br>
 -4Square
 *Instructions regarding APIS can be found on their respective sites.*
 <br>
 <h2> Running application</h2>
 - Pull repository
+<br>
 - Enter virtual environment
+<br>
 - Pip install requests
+<br>
 - Python app.py
+<br>
 *App should now be running!*
