@@ -220,3 +220,19 @@ Spotify.py:
 schedule.py:
   changed get_music(time) to return a random pop song.
   TODO: make get_music "dynamic" and return different song types and genres
+
+lamI -- 2018-01-19
+------------------------------
+1. schedule.py
+- Intervals of five hours between meals (lunch is at least 5 hrs after breakfast, dinner at least 5 hrs after lunch)
+- 10 PM sleep to ensure 8hrs of sleep (since the earliest wakeup time is 6 AM)
+- Random shower
+    - Follows the workout if a workout exists in the schedule
+    - Is placed as early in the day as possible if no workout exists in the schedule (but still follows breakfast)
+- Removed pre-workout and post-workout meals, and instead placed workouts near breakfast/lunch/dinner
+2. Profile
+- created route for profile in app.py that passes necessary user information from session and database
+- created profile.html, which displays all of the user's information
+- created edit_profile.html, which allows the user to edit all features in their profile
+    - Drop-down for exercise and music that were used in creating the account were changed to radio buttons for better readability
+- Everything tested and debugged

@@ -1,20 +1,28 @@
+from __future__ import print_function
 import requests
 import base64
 import json
 import random
+from _tokens import get_tokens_for
 
-SPOTIFY_CLIENT_ID = "9b4b1e609652443b8743e95b15122284"
-SPOTIFY_CLIENT_SECRET = "372840ae3ccd4e25b70776529bdc73e8"
+
+SPOTIFY_CLIENT_ID = ""
+SPOTIFY_CLIENT_SECRET = ""
 ACCESS_TOKEN = ""
-'''
-Gets Access Token
-'''
+
+
 def get_access_token():
-    print "Getting Spotify Token..."
+    """Gets Access Token"""
+    global SPOTIFY_CLIENT_ID
+    global SPOTIFY_CLIENT_SECRET
+    global ACCESS_TOKEN
+
+    SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET = get_tokens_for("spotify")
+    print("Getting Spotify Token...")
     url = "https://accounts.spotify.com/api/token"
     body_params = {"grant_type": "client_credentials"}
     response = json.loads(requests.post(url, data=body_params, auth=(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)).text)
-    global ACCESS_TOKEN
+
     ACCESS_TOKEN = response["access_token"]
 
 '''

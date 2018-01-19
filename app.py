@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, session, redirect, flash, url_for
-#from util import db
 from util import db
 from datetime import datetime
 from util import schedule
 from time import localtime
+from signal import signal, SIGPIPE, SIG_DFL
+signal(SIGPIPE, SIG_DFL)
 
 import os, cgi, hashlib
 
@@ -33,6 +34,7 @@ def rm_schedule():
     id = request.args["id"]
     g_schedule, g_song_lists = schedule.clear_schedule(g_schedule, g_song_lists, interval=id)
     return render_template("schedule.html", name="User", sch=g_schedule, song=g_song_lists, clock=range(localtime()[3], 24))
+
 
 @app.route("/recommendations")
 def recommendations():
@@ -69,7 +71,7 @@ def create_account():
         if db.check_account_exist(user):
             flash("User already exists")
             return redirect(url_for("display_signup"))
-        db.create_account(request.args);
+        db.create_account(request.args)
         flash("User created")
         return redirect(url_for("display_login"))
     else:
@@ -86,15 +88,43 @@ def login():
         session["username"] = request.args["username"]
         flash("Logged in!")
         return redirect(url_for("logged_in"))
-    flash("Credentials invalid");
+    flash("Credentials invalid")
     return redirect(url_for("display_login"))
 
-@app.route("/welcome")
+
+@app.route("/profile")
 def logged_in():
-    pass
     if "username" not in session.keys():
         return redirect(url_for("login"))
-    return render_template("welcome.html")
+    return render_template("profile.html", name = session["username"], info=db.get_all_user_preferences(session["username"]))
+
+
+@app.route("/edit_profile")
+def edit_profile():
+    if "username" not in session.keys():
+        return redirect(url_for("login"))
+    return render_template("edit_profile.html", name = session["username"], info=db.get_all_user_preferences(session["username"]))
+
+
+@app.route("/update_profile")
+def update_profile():
+    if "username" not in request.args:
+        flash("Not logged in")
+        return redirect(url_for("display_login"))
+    user = request.args["username"]
+
+    # "age", "height", "weight", "pfplink", "music", "excercise", "address", "email"
+    db.edit_user_pref(user, "age", request.args['age'])
+    db.edit_user_pref(user, "height", request.args['height'])
+    db.edit_user_pref(user, "weight", request.args['weight'])
+    db.edit_user_pref(user, "pfplink", request.args['pfplink'])
+    db.edit_user_pref(user, "music", request.args['music'])
+    db.edit_user_pref(user, "excercise", request.args['excercise'])
+    db.edit_user_pref(user, "address", request.args['address'])
+    db.edit_user_pref(user, "email", request.args['email'])
+
+    flash("Profile successfully updated")
+    return redirect(url_for("logged_in"))
 
 
 @app.route("/login")

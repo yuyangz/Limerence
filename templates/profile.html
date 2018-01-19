@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}
+    Profile
+{% endblock %}
+{% block content %}
+    <h2> Welcome {{ name }} </h2>
+    <br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Result/Value?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Weight:</td>
+                <td>{{info.weight}}</td>
+            </tr>
+            <tr>
+                <td>Age:</td>
+                <td>{{info.age}}</td>
+            </tr>
+            <tr>
+                <td>Link:</td>
+                <td>{{info.pfplink}}</td>
+            </tr>
+            <tr>
+                <td>E-mail:</td>
+                <td>{{info.email}}</td>
+            </tr>
+            <tr>
+                <td>Music Genre:</td>
+                <td>{{info.music}}</td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td>{{ info.address }}</td>
+            </tr>
+            <tr>
+                <td>Height:</td>
+                <td>{{ info.height }}</td>
+            </tr>
+            <tr>
+                <td>Exercise:</td>
+                <td>{{ info.excercise }}<br>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <button><a href="/edit_profile"> Edit profile </a></button>
+
+{% endblock %}

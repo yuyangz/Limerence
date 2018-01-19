@@ -1,6 +1,8 @@
+from __future__ import print_function
 import requests, time
+from _tokens import get_tokens_for
 
-WEATHER_KEY = # Input API Key
+WEATHER_KEY = "" # Input API Key
 
 global weather
 global last_city    # if you call too many times, it locks you out for one hour...
@@ -35,18 +37,22 @@ def print_time(unix_time, GMT):
     minutes = time % (24 * 60) / 60
     hours = time / (60 * 60)
     # print hours, ":", minutes, ":", seconds, " GMT"
-    print '{}:{}:{}'.format(hours + GMT, minutes, seconds)
+    print('{}:{}:{}'.format(hours + GMT, minutes, seconds))
     # print hours + GMT, minutes, seconds
 
 
 def get_forecast(city):
+    global WEATHER_KEY
+
+    WEATHER_KEY = get_tokens_for("weather")
+
     weather = get_weather(city)
     # prints description (e.g. cloudy, rain)
-    print weather['weather'][0]['main']
+    print(weather['weather'][0]['main'])
     # prints temperature (converted to Farenheit from Kelvin)
-    print weather['main']['temp'] * 9/5 - 459.67
+    print(weather['main']['temp'] * 9 / 5 - 459.67)
     # prints humidity
-    print weather['main']['humidity']
+    print(weather['main']['humidity'])
     # sunrise and sunset from midnight
     print_time(weather['sys']['sunrise'], GMT('NY'))
     print_time(weather['sys']['sunset'], GMT('NY'))

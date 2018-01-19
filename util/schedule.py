@@ -1,3 +1,4 @@
+from __future__ import print_function
 import time
 import spotify
 
@@ -10,6 +11,8 @@ WORKOUT = 'Workout'
 WORKOUT1 = 'preWorkout Session'
 WORKOUT2 = 'Workout Session'
 WORKOUT3 = 'postWorkout Session'
+SLEEP = "Sleep"
+SHOWER = "Shower"
 
 
 def get_music(time):
@@ -58,7 +61,7 @@ def attempt_dinner(schedule, song_list, start_time):
         if schedule[interval][0] == LUNCH:
             dinner_time = interval + 5
             break
-    if dinner_time > 22:
+    if dinner_time > 21:
         print(DINNER + ' is unavailable at this time.')
         return False
     if dinner_time == start_time and dinner_time < 17:
@@ -89,6 +92,29 @@ def attempt_workout(schedule, song_list, start_time):
     return True
 
 
+def place_shower(schedule, song_list):
+    workout_time = -1
+    breakfast_time = -1
+    for interval in range(0, 22):
+        if schedule[interval] == WORKOUT3:
+            workout_time = interval
+        if schedule[interval] == BREAKFAST:
+            breakfast_time = interval
+
+    shower_time = breakfast_time if workout_time == -1 else workout_time
+    if shower_time == -1:
+        shower_time = time.localtime()[3] + 1
+
+    for interval in range(shower_time, 22):
+        if schedule[interval] == EMPTY:
+            schedule[interval], song_list[interval] = SHOWER, get_music(interval)
+            break
+
+
+def place_sleep(schedule, song_list):
+    schedule[10], song_list[10] = SLEEP, get_music(10)
+
+
 def new_schedule(curr_time=time.localtime()):
     print('It is currently {:02}:{:02}'.format(curr_time[3], curr_time[4]))
     schedule = [EMPTY] * 24  # military standard time
@@ -98,7 +124,9 @@ def new_schedule(curr_time=time.localtime()):
     attempt_lunch(schedule, song_list, start_hr)
     attempt_dinner(schedule, song_list, start_hr)
     attempt_workout(schedule, song_list, start_hr)
-    print song_list
+    place_shower(schedule, song_list)
+    place_sleep(schedule, song_list)
+    print(song_list)
     return schedule, song_list
 
 
