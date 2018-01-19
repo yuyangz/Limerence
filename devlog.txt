@@ -46,6 +46,7 @@ MID-DEVELOPMENT DESIGN CHANGES
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- Stashing is dangerous (make sure you push everything you commit in due time!)
 ===========================================
 Everyone — 2017-12-14 to 2017-12-19 22:00
 ------------------------------
@@ -235,4 +236,11 @@ lamI -- 2018-01-19
 - created profile.html, which displays all of the user's information
 - created edit_profile.html, which allows the user to edit all features in their profile
     - Drop-down for exercise and music that were used in creating the account were changed to radio buttons for better readability
+3. foursquares.py (previously committed but accidentally stashed)
+- Retrieved api key and secret key
+- Methods that returns the closest store given a certain category
+- Takes in latitude longitude and returns an address
+4. Miscellaneous
+- Created _tokens.py to retrieve secret id (convenience of coding)
+- Updated Zone of Reflections
 - Everything tested and debugged
