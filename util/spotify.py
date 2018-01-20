@@ -3,7 +3,6 @@ import requests
 import base64
 import json
 import random
-from _tokens import get_tokens_for
 
 
 SPOTIFY_CLIENT_ID = ""
@@ -17,7 +16,6 @@ def get_access_token():
     global SPOTIFY_CLIENT_SECRET
     global ACCESS_TOKEN
 
-    SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET = get_tokens_for("spotify")
     print("Getting Spotify Token...")
     url = "https://accounts.spotify.com/api/token"
     body_params = {"grant_type": "client_credentials"}

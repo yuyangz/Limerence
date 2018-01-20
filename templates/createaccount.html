@@ -14,8 +14,8 @@
       margin-bottom: 0;
   border-radius: 0;
 
-    
-  
+
+
    border-color: transparent;
     }
 
@@ -24,33 +24,33 @@
   .row.content {height: 100%;
 
   }
-    
+
     /* Set gray background color and 100% height */
     .sidenav {
       padding-top: 20px;
      height: 100%;
- 
-   
+
+
   }
 
- 
-    
+
+
     /* Set black background color, white text and some padding */
     footer {
-     
+
       color: white;
       padding: 15px;
     }
-    
+
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
       .sidenav {
         height: 100%;
   padding: 15px;
- 
+
       }
   .row.content { height:100%;
-  } 
+  }
   }
 
 
@@ -85,7 +85,7 @@ div.slide-left h1 {
 @keyframes slide-left {
   from {
     margin-left: 100%;
-    width: 300%; 
+    width: 300%;
   }
 
   to {
@@ -99,7 +99,7 @@ div.slide-left h1 {
 
 
 
-   
+
 <body>
   {# Display flashed messages #}
   {% set messages = get_flashed_messages() %}
@@ -119,12 +119,12 @@ div.slide-left h1 {
     </ul>
   </div>
 </nav>
-  
-<div class="container-fluid text-center">    
+
+<div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-2 sidenav" style="background-color: white">
     </div>
-    
+
     <div class="col-sm-8 text-left" id="grad1">
 
   <div class="slide-left">
@@ -132,9 +132,9 @@ div.slide-left h1 {
        </div>
       <hr>
       <form action="/signup">
-	
+
 	<div class="form-group">
-	  
+
       <label for="username">Username:</label>
       <input type="username" class="form-control" id="username" placeholder="Enter username" name="username">
     </div>
@@ -143,7 +143,7 @@ div.slide-left h1 {
       <label for="pwd1">Password:</label>
       <input type="password1" class="form-control" id="pwd1" placeholder="Enter password" name="pwd1">
      </div>
-     
+
      <div class="form-group">
       <label for="pwd2">Password:</label>
       <input type="password2" class="form-control" id="pwd2" placeholder="Retype password" name="pwd2">
@@ -167,10 +167,17 @@ div.slide-left h1 {
        <div class="form-group">
       <label for="sel1">Select music (select one):</label>
       <select class="form-control" id="sel1" name="sel1">
-        <option value="Hip-hop">Hip-hop</option>
-        <option value="Pop">Pop</option>
-        <option value="Country">Country</option>
-        <option value="Rock">Rock</option>
+        <option value="hip-hop">Hip-hop</option>
+        <option value="pop">Pop</option>
+        <option value="country">Country</option>
+        <option value="rock">Rock</option>
+        <option value="k-pop">K-Pop</option>
+        <option value="metal">Metal</option>
+        <option value="alternative">Alternative</option>
+        <option value="blues">Blues</option>
+        <option value="classical">Classical</option>
+        <option value="edm">Edm</option>
+        <option value="jazz">Jazz</option>
       </select>
        </div>
 
@@ -196,14 +203,14 @@ div.slide-left h1 {
 
 	     <br>
     <!--Don't have an account yet? Click <a href="createaccount">here</a>!-->
-     
+
     </form>
 </div>
-  
-   
-    
+
+
+
     <div class="col-sm-2 sidenav" style="background-color: white">
-    
+
       </div>
     </div>
   </div>
@@ -213,4 +220,3 @@ div.slide-left h1 {
 
 
 </html>
-

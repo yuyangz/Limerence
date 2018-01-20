@@ -244,3 +244,10 @@ lamI -- 2018-01-19
 - Created _tokens.py to retrieve secret id (convenience of coding)
 - Updated Zone of Reflections
 - Everything tested and debugged
+
+anishS -- 2018-01-20
+------------------------------
+Schedule is now fully populated with Music
+Added more music choices in edit profile and create account
+**ADDRESS** now only stores city (address preference in db)
+TODO: Generating a schedule takes some time so we should have a loading screen

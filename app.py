@@ -18,9 +18,9 @@ global g_song_lists
 @app.route("/scheduler")
 def scheduler():
     global g_schedule
-    global g_song_lists
+    global g_song_lists 
 
-    sch = schedule.new_schedule()
+    sch = schedule.new_schedule(session["username"])
     g_schedule = sch[0]
     g_song_lists = sch[1]
     return render_template("schedule.html", name="User", sch=g_schedule, song=g_song_lists, clock=range(localtime()[3], 24))

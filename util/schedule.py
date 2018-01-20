@@ -1,6 +1,8 @@
 from __future__ import print_function
 import time
 import spotify
+import db
+import weather
 
 # Constants
 EMPTY = '(EMPTY)'
@@ -15,9 +17,21 @@ SLEEP = "Sleep"
 SHOWER = "Shower"
 
 
-def get_music(time):
+def get_music(time, username):
     # call from other class when completed.
-    return spotify.get_song("pop", 0.25)  # (genre, energy)
+    weather_to_scale = {"Rain": 0.5, "Drizzle": 0.9, "Thunderstorm": 0.25, "Snow": 0.75, "Atmosphere": 0.9, "Clear": 1.0, "Clouds":0.66, "Extreme":1.00, "Additional": 1.00}
+    time_to_val = {1:0.1, 2:0.1, 3:0.1, 4:0.1, 5:0.1, 6:0.5, 7:0.5, 8:0.5, 9:0.5, 10:0.6, 11:0.7, 12:0.75, 13:0.8, 14:0.9, 15:1.0, 16:0.9, 17:0.7, 18:0.5, 19:0.4, 20:0.3, 21:0.25, 22:0.2, 23:0.2, 24:0.1}
+    genre = db.get_user_pref(username, "music")[0].lower()
+    forecast = weather.get_weather(db.get_user_pref(username, "address")[0])['weather'][0]['main']
+    val = time_to_val[time] * weather_to_scale[forecast]
+    if (forecast == "Rain"):
+        genre = "rainy-day"
+        val = 0.5
+    if (time > 22 or time < 5):
+        genre = "sleep"
+        val = 0.25
+    print ("Time: " + str(time) + "Val: " + str(val))
+    return spotify.get_song(genre, val)  # (genre, energy)
 
 
 def clear_schedule(schedule, song_list, interval=None):
@@ -30,17 +44,17 @@ def clear_schedule(schedule, song_list, interval=None):
     return schedule, song_list
 
 
-def attempt_breakfast(schedule, song_list, breakfast_time):
+def attempt_breakfast(schedule, song_list, breakfast_time, username):
     if breakfast_time > 11:
         print(BREAKFAST + ' is unavailable at this time.')
         return False
     if breakfast_time < 6:
         breakfast_time = 6
-    schedule[breakfast_time], song_list[breakfast_time] = BREAKFAST, get_music(breakfast_time)
+    schedule[breakfast_time], song_list[breakfast_time] = BREAKFAST, get_music(breakfast_time, username)
     return True
 
 
-def attempt_lunch(schedule, song_list, start_time):
+def attempt_lunch(schedule, song_list, start_time, username):
     lunch_time = start_time
     for interval in range(start_time, 24):
         if schedule[interval][0] == BREAKFAST:
@@ -51,11 +65,11 @@ def attempt_lunch(schedule, song_list, start_time):
         return False
     if lunch_time == start_time and lunch_time < 12:
         lunch_time = 12
-    schedule[lunch_time], song_list[lunch_time] = LUNCH, get_music(lunch_time)
+    schedule[lunch_time], song_list[lunch_time] = LUNCH, get_music(lunch_time, username)
     return True
 
 
-def attempt_dinner(schedule, song_list, start_time):
+def attempt_dinner(schedule, song_list, start_time, username):
     dinner_time = start_time
     for interval in range(start_time, 24):
         if schedule[interval][0] == LUNCH:
@@ -66,11 +80,11 @@ def attempt_dinner(schedule, song_list, start_time):
         return False
     if dinner_time == start_time and dinner_time < 17:
         dinner_time = 17
-    schedule[dinner_time], song_list[dinner_time] = DINNER, get_music(dinner_time)
+    schedule[dinner_time], song_list[dinner_time] = DINNER, get_music(dinner_time, username)
     return True
 
 
-def attempt_workout(schedule, song_list, start_time):
+def attempt_workout(schedule, song_list, start_time, username):
     workout_time = -1
     skip = 0
     for interval in range(start_time, 22):
@@ -86,13 +100,13 @@ def attempt_workout(schedule, song_list, start_time):
     if workout_time == -1:
         print(WORKOUT + ' is unavailable at this time.')
         return False
-    schedule[workout_time], song_list[workout_time] = WORKOUT1, get_music(workout_time)
-    schedule[workout_time + 1], song_list[workout_time + 1] = WORKOUT2, get_music(workout_time + 1)
-    schedule[workout_time + 2], song_list[workout_time + 2] = WORKOUT3, get_music(workout_time + 2)
+    schedule[workout_time], song_list[workout_time] = WORKOUT1, get_music(workout_time, username)
+    schedule[workout_time + 1], song_list[workout_time + 1] = WORKOUT2, get_music(workout_time + 1, username)
+    schedule[workout_time + 2], song_list[workout_time + 2] = WORKOUT3, get_music(workout_time + 2, username)
     return True
 
 
-def place_shower(schedule, song_list):
+def place_shower(schedule, song_list, username):
     workout_time = -1
     breakfast_time = -1
     for interval in range(0, 22):
@@ -107,25 +121,28 @@ def place_shower(schedule, song_list):
 
     for interval in range(shower_time, 22):
         if schedule[interval] == EMPTY:
-            schedule[interval], song_list[interval] = SHOWER, get_music(interval)
+            schedule[interval], song_list[interval] = SHOWER, get_music(interval, username)
             break
 
 
-def place_sleep(schedule, song_list):
-    schedule[10], song_list[10] = SLEEP, get_music(10)
+def place_sleep(schedule, song_list, username):
+    schedule[10], song_list[10] = SLEEP, get_music(10, username)
 
 
-def new_schedule(curr_time=time.localtime()):
+def new_schedule(username, curr_time=time.localtime()):
     print('It is currently {:02}:{:02}'.format(curr_time[3], curr_time[4]))
     schedule = [EMPTY] * 24  # military standard time
     song_list = [EMPTY] * 24  # military standard time
     start_hr = 5     # curr_time[3] + 1
-    attempt_breakfast(schedule, song_list, start_hr)
-    attempt_lunch(schedule, song_list, start_hr)
-    attempt_dinner(schedule, song_list, start_hr)
-    attempt_workout(schedule, song_list, start_hr)
-    place_shower(schedule, song_list)
-    place_sleep(schedule, song_list)
+    attempt_breakfast(schedule, song_list, start_hr, username)
+    attempt_lunch(schedule, song_list, start_hr, username)
+    attempt_dinner(schedule, song_list, start_hr, username)
+    attempt_workout(schedule, song_list, start_hr, username)
+    place_shower(schedule, song_list, username)
+    place_sleep(schedule, song_list, username)
+    for i in range(24):
+        if song_list[i] == EMPTY:
+            song_list[i] = get_music(i+1, username)
     print(song_list)
     return schedule, song_list
 
