@@ -12,11 +12,11 @@
     <hr>
     
 <div class = "well">
-    <table>
+    <table class = "table">
         <thead>
             <tr>
-                <th>Category</th>
-                <th>Result/Value?</th>
+                <th><h3>Category</h3></th>
+                <th><h3>Result/Value?</h3></th>
             </tr>
         </thead>
         <tbody>
@@ -45,18 +45,20 @@
                 <td>{{ info.address }}</td>
             </tr>
             <tr>
-                <td>Height:</td>
-                <td>{{ info.height }}</td>
+              <td>Height:</td>
+              <td>{{ info.height }}</td>
             </tr>
             <tr>
-                <td>Exercise:</td>
-                <td>{{ info.excercise }}<br>
-                </td>
+              <td>Exercise:</td>
+              <td>{{ info.excercise }}<br>
+              </td>
             </tr>
         </tbody>
     </table>
     <br>
-    <button><a href="/edit_profile"> Edit profile </a></button>
+    <form method="get" action= "/edit_profile">
+      <button class="btn btn-default">Edit profile</button>
+    </form>
 </div>
 </div>
 

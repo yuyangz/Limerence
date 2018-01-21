@@ -1,74 +1,81 @@
 {% extends "user_base.html" %}
 {% block title %}
-    Profile
+Profile
 {% endblock %}
 {% block content %}
-    <h2> Welcome {{ name }} </h2>
-    <br>
-
+<div class="col-sm-12 text-left"  id="grad1">
+  <div class="slide-left">
+    <h1> Edit Information </h1>
+  </div>
+  <hr>
+  <div>
     <!--{{ info }}-->
     <form action="/update_profile">
-        <input type="hidden" name="username" value="{{name}}">
-        <table>
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Result/Value?</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Weight:</td>
-                    <td><input type="text" name="weight" value="{{info.weight}}"></td>
-                </tr>
-                <tr>
-                    <td>Age:</td>
-                    <td><input type="text" name="age" value="{{info.age}}"></td>
-                </tr>
-                <tr>
-                    <td>Link:</td>
-                    <td><input type="text" name="pfplink" value="{{info.pfplink}}"></td>
-                </tr>
-                <tr>
-                    <td>E-mail:</td>
-                    <td><input type="email" name="email" value="{{info.email}}"></td>
-                </tr>
-                <tr>
-                    <td>Music Genre:</td>
-                    <td>
-                        <input type="radio" name="music" value="hip-hop" checked> Hip-hop<br>
-                        <input type="radio" name="music" value="pop"> Pop <br>
-                        <input type="radio" name="music" value="country"> Country <br>
-                        <input type="radio" name="music" value="rock"> Rock <br>
-                        <input type="radio" name="music" value="k-pop"> K-Pop <br>
-                        <input type="radio" name="music" value="metal"> Metal <br>
-                        <input type="radio" name="music" value="alternative"> Alternative <br>
-                        <input type="radio" name="music" value="blues"> Blues <br>
-                        <input type="radio" name="music" value="classical"> Classical <br>
-                        <input type="radio" name="music" value="edm"> Edm <br>
-                        <input type="radio" name="music" value="jazz"> Jazz <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Address:</td>
-                    <td><input type="text" name="address" value="{{ info.address }}"></td>
-                </tr>
-                <tr>
-                    <td>Height:</td>
-                    <td><input type="text" name="height" value="{{ info.height }}"></td>
-                </tr>
-                <tr>
-                    <td>Exercise:</td>
-                    <td>
-                        <input type="radio" name="excercise" value="Cardiovascular" checked> Cardiovascular<br>
-                        <input type="radio" name="excercise" value="Strength"> Strength<br>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <button type="submit">Update Profile</button>
+      <input type="hidden" name="username" value="{{name}}">
+      <table class = "table">
+        <thead>
+          <tr>
+            <th><h3>Category</h3></th>
+            <th><h3>Result/Value?</h3></th>
+          </tr>
+	  
+        </thead>
+        <tbody>
+          <tr>
+            <td>Weight:</td>
+            <td><input type="text" name="weight" value="{{info.weight}}"></td>
+          </tr>
+          <tr>
+            <td>Age:</td>
+            <td><input type="text" name="age" value="{{info.age}}"></td>
+          </tr>
+          <tr>
+            <td>Link:</td>
+            <td><input type="text" name="pfplink" value="{{info.pfplink}}"></td>
+          </tr>
+          <tr>
+            <td>E-mail:</td>
+            <td><input type="email" name="email" value="{{info.email}}"></td>
+          </tr>
+          <tr>
+            <td>Music Genre:</td>
+            <td>
+	      
+	      <input type="radio" name="music" value="hip-hop" checked> Hip-hop<br>	     
+              <input type="radio" name="music" value="pop"> Pop <br>
+              <input type="radio" name="music" value="country"> Country <br>
+              <input type="radio" name="music" value="rock"> Rock <br>
+              <input type="radio" name="music" value="k-pop"> K-Pop <br>
+              <input type="radio" name="music" value="metal"> Metal <br>
+              <input type="radio" name="music" value="alternative"> Alternative <br>
+              <input type="radio" name="music" value="blues"> Blues <br>
+              <input type="radio" name="music" value="classical"> Classical <br>
+              <input type="radio" name="music" value="edm"> Edm <br>
+              <input type="radio" name="music" value="jazz"> Jazz <br>
+	      
+            </td>
+          </tr>
+          <tr>
+            <td>Address:</td>
+            <td><input type="text" name="address" value="{{ info.address }}"></td>
+          </tr>
+          <tr>
+            <td>Height:</td>
+            <td><input type="text" name="height" value="{{ info.height }}"></td>
+          </tr>
+          <tr>
+            <td>Exercise:</td>
+            <td>
+              <input type="radio" name="excercise" value="Cardiovascular" checked> Cardiovascular<br>
+              <input type="radio" name="excercise" value="Strength"> Strength<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <button class="btn btn-default" type="submit">Update Profile</button>
     </form>
-
+  </div>
+</div>
 
 {% endblock %}
