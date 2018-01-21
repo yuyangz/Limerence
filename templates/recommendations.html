@@ -1,167 +1,49 @@
-<link rel="stylesheet" type="text/css" href="static/home.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% extends "user_base.html" %}
 
-<html>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-     <head>
+{% block title %}
 <title>
-      Recommendations
+  Recommendations
 </title>
-<link rel="stylesheet" type="text/css" href="static/home.css">
-<style>
-  .navbar {
-  background-color: #DEECF4;
-      margin-bottom: 0;
-  border-radius: 0;
+{% endblock %}
 
-    
-  
-   border-color: transparent;
-    }
-
-
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-  .row.content {height: 100%;
-
-  }
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-  height: 100%;
-   
-  }
-
- 
-    
-    /* Set black background color, white text and some padding */
-    footer {
-     
-      color: white;
-      padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-  padding: 15px;
- 
-      }
-  .row.content { height:auto;
-  } 
-  }
-
-
-  div.slide-left {
-  width:100%;
-  overflow:hidden;
-}
-div.slide-left h1 {
-  animation: slide-left 5s;
-}
-
-@keyframes slide-left {
-  from {
-    margin-left: 100%;
-    width: 300%; 
-  }
-
-  to {
-    margin-left: 0%;
-    width: 100%;
-  }
-  }
-
-  .body {
-  background-color: #333333;
-}
-
-
-
-#grad1 {
-    height: 100%;
-    background: #619DCF; /* For browsers that do not support gradients */
-    background: linear-gradient(to bottom right, #619DCF, white); /* Standard syntax (must be last) */
-}
-
-h1 {
- font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-  font-weight: 200;
-  letter-spacing: 1px;
-  color: #E9F2F7;
-  }
-
-  li{
-  font-weight: bold;
-  }
-  </style>
-  </head>
-
-
-      <body>
-
-
-
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/scheduler">LIMERENCE</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="/recommendations">RECOMMENDATIONS</a></li>
-      <li><a href="/scheduler">SCHEDULE</a></li>
-      <li><a href="/profile">PROFILE</a></li>
-    </ul>
+{% block content %}	 
+<div class="col-sm-12 text-left"  id="grad1">  
+  <div class="slide-left">
+    <h1>Welcome {{name}} to your RECOMMENDATIONS</h1>
   </div>
-</nav>
+  <hr>
+  <div>
+    <table class="table">
+      <thead>
+	<tr>
+          <th><h3>Add to Schedule</h3></th>
+          <th><h3>Select a Time</h3></th>
+          <th><h3>Recommendations</h3></th>
 
-	
-<div class="container-fluid text-center" >    
-  <div class="row content">
-  <div class="col-sm-2 sidenav" style= "background-color:white;">
-     
-    </div>
-    
-     <div class="col-sm-8 text-left"  id="grad1">  
-       <div class="slide-left">
-	 <h1>Welcome {{name}} to your RECOMMENDATIONS</h1>
-
-<hr>
-<table class="table">
-    <thead>
-      <tr>
-        <th>Add to Schedule</th>
-        <th>Select a Time</th>
-        <th>Recommendations</th>
-
-      </tr>
-    </thead>
-     {% for i in clock %}
-    <tbody>
-      <tr>
-	<td><center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">
-<button type="button" class="btn btn-default btn-med">
-  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 
-</button>
-	</a> </center></td>
-            <td>*Dropdown</td>
-            <td>{{sch[i]}}</td>
- 
-          
-            </td>
-      </tr>
-            {% endfor %}
-    </tbody>
+	</tr>
+      </thead>
+      {% for i in clock %}
+      <tbody>
+	<tr>
+	  <td><center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">
+		<button type="button" class="btn btn-default btn-med">
+		  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 
+		</button>
+	  </a> </center></td>
+          <td>*Dropdown</td>
+          <td>{{sch[i]}}</td>	                    
+</td>
+</tr>
+{% endfor %}
+</tbody>
 </table>
-   <script src="../static/schedule.js"></script>	 
-       </div>
-       
-       <hr>
+<script src="../static/schedule.js"></script>	 
+</div>
+</div>
 
-      </body>
-      </html>
+
+
+{% endblock %}
 
 
    

@@ -1,126 +1,14 @@
-<html>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <head>
+{% extends "guess_base.html" %}
+
+{% block title %}
 <title>
-      Home
+  Home
 </title>
-<link rel="stylesheet" type="text/css" href="static/home.css">
-<style>
-  .navbar {
-  background-color: #DEECF4;
-      margin-bottom: 0;
-  border-radius: 0;
+{% endblock %}
 
+{% block content %} 
 
-
-   border-color: transparent;
-    }
-
-
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-  .row.content {height: 100%;
-
-  }
-
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-  height: 100%;
-
-  }
-
-
-
-    /* Set black background color, white text and some padding */
-    footer {
-
-      color: white;
-      padding: 15px;
-    }
-
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-  padding: 15px;
-
-      }
-  .row.content { height:auto;
-  }
-  }
-
-
-  div.slide-left {
-  width:100%;
-  overflow:hidden;
-}
-div.slide-left h1 {
-  animation: slide-left 5s;
-}
-
-@keyframes slide-left {
-  from {
-    margin-left: 100%;
-    width: 300%;
-  }
-
-  to {
-    margin-left: 0%;
-    width: 100%;
-  }
-  }
-
-  .body {
-  background-color: #333333;
-}
-
-
-
-#grad1 {
-    height: 100%;
-    background: #619DCF; /* For browsers that do not support gradients */
-    background: linear-gradient(to bottom right, #619DCF, white); /* Standard syntax (must be last) */
-}
-
-h1 {
- font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-  font-weight: 200;
-  letter-spacing: 1px;
-  color: #E9F2F7;
-  }
-
-  li{
-  font-weight: bold;
-  }
-  </style>
-  </head>
-
-
-      <body>
-
-
-
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">LIMERENCE</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="/">HOME</a></li>
-      <li><a href="/login">LOGIN</a></li>
-      <li><a href="/createaccount">CREATE ACCOUNT</a></li>
-    </ul>
-  </div>
-</nav>
-
-
-<div class="container-fluid text-center" >
-  <div class="row content">
-  <div class="col-sm-2 sidenav" style= "background-color:white;">
-
-    </div>
-
-     <div class="col-sm-8 text-left"  id="grad1">
+     <div class="col-sm-12 text-left"  id="grad1">
        <div class="slide-left">
          <h1>HOME</h1>
        </div>
@@ -128,16 +16,17 @@ h1 {
        <hr>
 
        <div>
-          <h1  style= "color: #58819F">Our project is a lifestyle app where users will be able to monitor and receive suggestions in regards to their dietary choices and exercise choices. With the initial creation of an account, the user will be prompted to insert information about their music choices and their body type. This information will be used to track and suggest music, food choices, and exercise sets later on. With these recommendations, the user will also be able to create a schedule to plan out their day. If the user is fond of the recommendations, he/she may save these recommendations and reuse them in the future. A profile will be created to track saved information.</h1>
+         <h1  style= "color: #58819F">Our project is a lifestyle app where users will be able to monitor and receive suggestions in regards to their dietary choices and exercise choices. With the initial creation of an account, the user will be prompted to insert information about their music choices and their body type. This information will be used to track and suggest music, food choices, and exercise sets later on. With these recommendations, the user will also be able to create a schedule to plan out their day. If the user is fond of the recommendations, he/she may save these recommendations and reuse them in the future. A profile will be created to track saved information.</h1>
 
        </div>
 
 
-    </div>
+     </div>
 
-    </div>
-  </div>
 </div>
 
-</body>
-</html>
+
+{% endblock %}
+
+
+
