@@ -53,13 +53,13 @@ def hello_world():
     Otherwise, the login page is displayed
     '''
     if "username" in session.keys():
-        return render_template("welcome.html", name = session["username"])
+        return render_template("schedule.html", name = session["username"])
     return render_template("home.html")
 
 @app.route("/createaccount")
 def display_signup():
     if "username" in session.keys():
-        return render_template("welcome.html", name = session["username"])
+        return render_template("schedule.html", name = session["username"])
     return render_template("createaccount.html")
 
 @app.route("/signup")

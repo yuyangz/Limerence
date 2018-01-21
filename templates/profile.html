@@ -1,11 +1,17 @@
-{% extends "base.html" %}
+{% extends "user_base.html" %}
+
 {% block title %}
     Profile
 {% endblock %}
 {% block content %}
-    <h2> Welcome {{ name }} </h2>
-    <br>
 
+<div class="col-sm-12 text-left"  id="grad1">
+    <div class="slide-left">
+      <h1> Welcome {{ name }} </h1>
+      </div>
+    <hr>
+    
+<div class = "well">
     <table>
         <thead>
             <tr>
@@ -51,5 +57,7 @@
     </table>
     <br>
     <button><a href="/edit_profile"> Edit profile </a></button>
+</div>
+</div>
 
 {% endblock %}

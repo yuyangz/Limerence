@@ -1,9 +1,7 @@
 {% extends "guess_base.html" %}
 
 {% block title %}
-<title>
   Home
-</title>
 {% endblock %}
   
 {% block content %}
@@ -23,7 +21,7 @@
   {% endfor %}
   <hr>
 
-  
+  <div class = "well">
     <form action="/auth">
     <div class="form-group">
       <label for="email">Email:</label>

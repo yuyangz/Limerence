@@ -1,9 +1,7 @@
 {% extends "guess_base.html" %}
 
 {% block title %}
-<title>
   Create Account
-  </title>
 {% endblock %}
 
 
@@ -22,7 +20,9 @@
   {% for msg in messages %}
   <center><h2>{{msg}}</h2></center>
   {% endfor %}
-      <hr>
+  <hr>
+
+  <div class = "well">
       <form action="/signup">
 
 	<div class="form-group">

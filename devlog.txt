@@ -222,6 +222,12 @@ schedule.py:
   changed get_music(time) to return a random pop song.
   TODO: make get_music "dynamic" and return different song types and genres
 
+zhangY —- 2017-01-17
+------------------------------
+README file had been modified to reflect the nature of the project.
+File now has information regarding basics of the project.
+It also gives information on how to run project and get API keys.
+
 lamI -- 2018-01-19
 ------------------------------
 1. schedule.py
@@ -251,3 +257,16 @@ Schedule is now fully populated with Music
 Added more music choices in edit profile and create account
 **ADDRESS** now only stores city (address preference in db)
 TODO: Generating a schedule takes some time so we should have a loading screen
+
+zhangY —- 2018-01-20
+------------------------------
+Inheritance is now incorporated.
+HTML files have been cleaned up so that the navbars and CSS have their own files.
+Templates now only have their necessary body materials.
+Bootstrap height issues have been somewhat fixed (certain pages still do not extend all the way).
+Div now extends the entire width of page.
+Wells have been added to give some contrast to the page.
+Profile page now has bootstrap added.
+*CSS file still needs to be made separate.
+
+
