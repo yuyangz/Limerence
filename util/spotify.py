@@ -3,6 +3,7 @@ import requests
 import base64
 import json
 import random
+import keys
 
 
 SPOTIFY_CLIENT_ID = ""
@@ -15,6 +16,11 @@ def get_access_token():
     global SPOTIFY_CLIENT_ID
     global SPOTIFY_CLIENT_SECRET
     global ACCESS_TOKEN
+
+    if SPOTIFY_CLIENT_ID == "" or SPOTIFY_CLIENT_SECRET == "":
+        spotkeys = keys.get_key("spotify")
+        SPOTIFY_CLIENT_ID = spotkeys[0]
+        SPOTIFY_CLIENT_SECRET = spotkeys[1]
 
     print("Getting Spotify Token...")
     url = "https://accounts.spotify.com/api/token"

@@ -1,10 +1,16 @@
-import requests, time
+import requests, time, keys
 
 EDAMAM_APP_KEY = # insert app key
 EDAMAM_APP_ID = # insert app ix
 
 
 def get_food_options(food):
+    global EDAMAM_APP_KEY
+    global EDAMAM_APP_ID
+    if(EDAMAM_APP_ID == "" or EDAMAM_APP_KEY == ""):
+        edkeys = keys.get_key("edamam")
+        EDAMAM_APP_ID = edkeys[0]
+        EDAMAM_APP_KEY = edkeys[1]
     url = "https://api.edamam.com/api/food-database/parser?ingr="+food+"&app_id="+EDAMAM_APP_ID+"&app_key="+EDAMAM_APP_KEY+"&page=0"
     food_opt = requests.get(url).json()
     # print(food_opt['parsed'][0]['food']['label'])  # same as num 0 in hints below

@@ -30,7 +30,7 @@ def get_music(time, username):
     if (time > 22 or time < 5):
         genre = "sleep"
         val = 0.25
-    print ("Time: " + str(time) + "Val: " + str(val))
+    print ("Time: " + str(time) + " Val: " + str(val))
     return spotify.get_song(genre, val)  # (genre, energy)
 
 
@@ -133,7 +133,7 @@ def new_schedule(username, curr_time=time.localtime()):
     print('It is currently {:02}:{:02}'.format(curr_time[3], curr_time[4]))
     schedule = [EMPTY] * 24  # military standard time
     song_list = [EMPTY] * 24  # military standard time
-    start_hr = 5     # curr_time[3] + 1
+    start_hr = curr_time[3]     # curr_time[3] + 1
     attempt_breakfast(schedule, song_list, start_hr, username)
     attempt_lunch(schedule, song_list, start_hr, username)
     attempt_dinner(schedule, song_list, start_hr, username)

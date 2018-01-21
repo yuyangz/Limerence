@@ -1,5 +1,6 @@
 from __future__ import print_function
 import requests, time
+import keys
 
 WEATHER_KEY = "" # Input API Key
 
@@ -13,6 +14,9 @@ def get_weather(city):
     global weather
     global last_city
     global last_time
+    global WEATHER_KEY
+    if WEATHER_KEY == "":
+        WEATHER_KEY = keys.get_key("openweathermap")[0]
 
     if city == last_city and last_time - time.time() < 60: # 60 sec
         return weather
@@ -42,8 +46,8 @@ def print_time(unix_time, GMT):
 
 def get_forecast(city):
     global WEATHER_KEY
-
-    #WEATHER_KEY = get_tokens_for("weather")
+    if WEATHER_KEY == "":
+        WEATHER_KEY = keys.get_key("openweathermap")[0]
 
     weather = get_weather(city)
     # prints description (e.g. cloudy, rain)
