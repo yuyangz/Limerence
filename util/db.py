@@ -38,7 +38,7 @@ def create_account(userinfo):
     c = get_cursor(db)
 
     #Add User Properties
-    command1 = "INSERT INTO accounts VALUES(?, ?, ?, ?, ?, ?, ? ,? ,?, ?)"
+    command1 = "INSERT INTO accounts VALUES(?, ?, ?, ?, ?, ?, ? ,? ,?, ?, ?)"
     username = userinfo["username"]
     password = userinfo["pwd1"]
     password = hashlib.sha224(password)
@@ -52,9 +52,10 @@ def create_account(userinfo):
     exercise = userinfo["sel2"]
     address = userinfo["address"]
     email = userinfo["email"]
+    last_accessed = 0
     #print "Error. Account not created\n"
     #return ""
-    c.execute(command1, (username, password, age, height, weight, pfplink, music, exercise, address, email))
+    c.execute(command1, (username, password, age, height, weight, pfplink, music, exercise, address, email, last_accessed))
 
     #Create User Schedule Table
     command2 = "CREATE TABLE " + username + "(time INT PRIMARY KEY, activity TEXT, music TEXT);"
@@ -91,7 +92,7 @@ def check_account(username, password):
     return False
 
 '''
-Returns a dictionary of all the users preferences
+Returns a dictionary of all the users preferences except last_accessed
 Takes in a username
 '''
 def get_all_user_preferences(username):
@@ -117,12 +118,12 @@ def get_all_user_preferences(username):
 '''
 Returns the value of a user's preference
 Takes in a username and one preference
-preference can be one of: "age", "height", "weight", "pfplink", "music", "excercise", "address", "email"
+preference can be one of: "age", "height", "weight", "pfplink", "music", "excercise", "address", "email", "last_accessed"
 '''
 def get_user_pref(username, preference):
     db = get_db()
     c = get_cursor(db)
-    pref_names = ["age", "height", "weight", "pfplink", "music", "excercise", "address", "email"]
+    pref_names = ["age", "height", "weight", "pfplink", "music", "excercise", "address", "email", "last_accessed"]
     if check_account_exist(username):
         if preference in pref_names:
             command = "SELECT " + preference + " FROM accounts WHERE username = ?"
@@ -145,7 +146,7 @@ Returns the original value
 def edit_user_pref(username, preference, new_val):
     db = get_db()
     c = get_cursor(db)
-    pref_names = ["age", "height", "weight", "pfplink", "music", "excercise", "address", "email"]
+    pref_names = ["age", "height", "weight", "pfplink", "music", "excercise", "address", "email", "last_accessed"]
     if check_account_exist(username):
         if preference in pref_names:
             old_val = get_user_pref(username, preference)
@@ -220,6 +221,8 @@ def get_activ_music(username, time):
         print sched[hour]
         return sched[hour]
     print "No Schedule Found"
+
+
 
 '''
 TESTS:

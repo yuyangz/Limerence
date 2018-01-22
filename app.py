@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, flash, url_for
 from util import db
 from datetime import datetime
+import time
 from util import schedule
 from time import localtime
 from signal import signal, SIGPIPE, SIG_DFL
@@ -22,10 +23,18 @@ def scheduler():
     global g_schedule
     global g_song_lists
 
-    sch = schedule.new_schedule("wumbo")
-    g_schedule = sch[0]
-    g_song_lists = sch[1]
-    return render_template("schedule.html", name="User", sch=g_schedule, song=g_song_lists, clock=range(localtime()[3], 24))
+    username = session["username"]
+
+    curr_time = int(time.time()) #epoch time
+    last_accessed = db.get_user_pref(username, "last_accessed")[0]
+
+    if  datetime.fromtimestamp(curr_time).date()  == datetime.fromtimestamp(last_accessed).date(): #If we have already accessed the schedule today
+        sch = db.get_schedule(username)
+    else:
+        sch = schedule.new_schedule(username)
+        db.reset_sched(username, sch)
+        db.edit_user_pref(username, "last_accessed", curr_time)
+    return render_template("schedule.html", name="User", sch=sch, clock=range(localtime()[3], 24))
 
 
 @app.route("/rmSchedule")

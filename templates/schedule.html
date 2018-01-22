@@ -31,12 +31,12 @@
 		  <span aria-hidden="true">&times;</span>
 	  </button></a> </center></td>
           <td>{{i}}:00</td>
-          <td>{{sch[i]}}</td>
+          <td>{{sch[i]["activity"]}}</td>
           <td>
-            {% if song[i] == '(EMPTY)' %}
+            {% if sch[i]["music"] == '(EMPTY)' %}
             (EMPTY)
             {% else %}
-            <iframe src="https://open.spotify.com/embed?uri={{song[i]}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+            <iframe src="https://open.spotify.com/embed?uri={{sch[i]["music"]}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
             {% endif %}
           </td>
 	</tr>

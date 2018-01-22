@@ -20,7 +20,7 @@ SHOWER = "Shower"
 def get_music(time, username):
     # call from other class when completed.
     weather_to_scale = {"Rain": 0.5, "Drizzle": 0.9, "Thunderstorm": 0.25, "Snow": 0.75, "Atmosphere": 0.9, "Clear": 1.0, "Clouds":0.66, "Extreme":1.00, "Additional": 1.00}
-    time_to_val = {1:0.1, 2:0.1, 3:0.1, 4:0.1, 5:0.1, 6:0.5, 7:0.5, 8:0.5, 9:0.5, 10:0.6, 11:0.7, 12:0.75, 13:0.8, 14:0.9, 15:1.0, 16:0.9, 17:0.7, 18:0.5, 19:0.4, 20:0.3, 21:0.25, 22:0.2, 23:0.2, 24:0.1}
+    time_to_val = {0: 0.1, 1:0.1, 2:0.1, 3:0.1, 4:0.1, 5:0.1, 6:0.5, 7:0.5, 8:0.5, 9:0.5, 10:0.6, 11:0.7, 12:0.75, 13:0.8, 14:0.9, 15:1.0, 16:0.9, 17:0.7, 18:0.5, 19:0.4, 20:0.3, 21:0.25, 22:0.2, 23:0.2}
     genre = db.get_user_pref(username, "music")[0].lower()
     forecast = weather.get_weather(db.get_user_pref(username, "address")[0])['weather'][0]['main']
     val = time_to_val[time] * weather_to_scale[forecast]
@@ -133,18 +133,21 @@ def new_schedule(username, curr_time=time.localtime()):
     print('It is currently {:02}:{:02}'.format(curr_time[3], curr_time[4]))
     schedule = [EMPTY] * 24  # military standard time
     song_list = [EMPTY] * 24  # military standard time
-    start_hr = curr_time[3]     # curr_time[3] + 1
+    start_hr = curr_time[3]    # curr_time[3] + 1
+    print (start_hr)
     attempt_breakfast(schedule, song_list, start_hr, username)
     attempt_lunch(schedule, song_list, start_hr, username)
     attempt_dinner(schedule, song_list, start_hr, username)
     attempt_workout(schedule, song_list, start_hr, username)
     place_shower(schedule, song_list, username)
     place_sleep(schedule, song_list, username)
-    for i in range(24):
+    fin_sched = {}
+    for i in range(start_hr, 24):
         if song_list[i] == EMPTY:
-            song_list[i] = get_music(i+1, username)
-    print(song_list)
-    return schedule, song_list
+            song_list[i] = get_music(i, username)
+        fin_sched[i] = {"activity":schedule[i], "music":song_list[i]}
+    print (fin_sched)
+    return fin_sched
 
 
 def print_schedule(schedule, song_list):

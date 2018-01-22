@@ -275,3 +275,7 @@ lamI -- 2018-01-21 19:42
 - Users must be logged in to view their schedule, recommendations page, profile, etc (previously these could be viewed without logging in)
 - Removed redundant "Home" in the navbar (clicking on LIMERENCE was effectively the same)
 
+anishS -- 2018-01-21 22:00
+------------------------------
+Refreshing Schedule doesn't create a new one
+**12 AM == 00:00 not 24:00

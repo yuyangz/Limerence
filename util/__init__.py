@@ -7,8 +7,8 @@ def create():
 		print "already a database"
 	else:
 		db = sqlite3.connect(path)
-		cmd_account = "CREATE TABLE accounts(username TEXT PRIMARY KEY, password TEXT, age INT, height INT, weight INT, pfplink TEXT, music TEXT, excercise TEXT, address TEXT, email TEXT);"
+		cmd_account = "CREATE TABLE accounts(username TEXT PRIMARY KEY, password TEXT, age INT, height INT, weight INT, pfplink TEXT, music TEXT, excercise TEXT, address TEXT, email TEXT, last_accessed INT);"
 		db.execute(cmd_account)
 		print "makes database here"
-		                    
+
 create()
