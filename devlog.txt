@@ -228,7 +228,7 @@ README file had been modified to reflect the nature of the project.
 File now has information regarding basics of the project.
 It also gives information on how to run project and get API keys.
 
-lamI -- 2018-01-19
+lamI -- 2018-01-19 02:45
 ------------------------------
 1. schedule.py
 - Intervals of five hours between meals (lunch is at least 5 hrs after breakfast, dinner at least 5 hrs after lunch)
@@ -269,4 +269,9 @@ Wells have been added to give some contrast to the page.
 Profile page now has bootstrap added.
 *CSS file still needs to be made separate.
 
+lamI -- 2018-01-21 19:42
+------------------------------
+- Fixed log out (originally kept the user logged in)
+- Users must be logged in to view their schedule, recommendations page, profile, etc (previously these could be viewed without logging in)
+- Removed redundant "Home" in the navbar (clicking on LIMERENCE was effectively the same)
 

@@ -17,6 +17,8 @@ global g_song_lists
 
 @app.route("/scheduler")
 def scheduler():
+    if "username" not in session.keys():
+        return redirect(url_for("login"))
     global g_schedule
     global g_song_lists
 
@@ -28,6 +30,8 @@ def scheduler():
 
 @app.route("/rmSchedule")
 def rm_schedule():
+    if "username" not in session.keys():
+        return redirect(url_for("login"))
     global g_schedule
     global g_song_lists
 
@@ -38,6 +42,8 @@ def rm_schedule():
 
 @app.route("/recommendations")
 def recommendations():
+    if "username" not in session.keys():
+        return redirect(url_for("login"))
     global g_schedule
     global g_song_lists
 
