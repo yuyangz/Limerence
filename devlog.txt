@@ -290,3 +290,27 @@ Attempted to modify recommendations but was unable to test due to backend issues
 Added javascript to home page.
 	This way description of page will not suddenly pop up and overwhelm user.
 	Clicking on link will fade in the information and the link will fade out.
+
+lamI -- 2018-01-22 18:33
+------------------------------
+1. schedule
+- Fixed new_schedule in schedule.py
+    - Separated schedule from songs as originally intended
+    - Resolved errors regarding schedule and song as a tuple
+- "X" functionality -- now replaces the event with a new event as opposed to leaving empty options
+- Schedule populates with random events (to an extent)
+- Fixed sleep time from 10 AM to 10 PM
+- Events will not update to something apart from "Sleep" when the user should be asleep
+2. Recommendations
+- HTML page populated by several events
+- Customizing schedule functionality
+    - Drop down menu in recommendations contains multiple options for time the user can choose to replace
+    - If desired, the selected event will replace the event in the schedule at the chosen time
+3. Templates & Front end
+- Updated createaccount.html to show valid location/city (more appropriate for the APIs)
+- Updated login to properly show "username" as opposed to "email"
+- Updaed table for recommendations and corrected <tbody> layout
+4. Miscellaneous
+- Resolved issues regarding SIGPIPE (not supported by Windows)
+- Fixed bug in db.py where time was a dict instead of int values
+- Replaced random flask messages to more relevant ones or replaced altogether
