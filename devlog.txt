@@ -279,3 +279,10 @@ anishS -- 2018-01-21 22:00
 ------------------------------
 Refreshing Schedule doesn't create a new one
 **12 AM == 00:00 not 24:00
+
+zhangY —- 2018-01-21 23:00
+Updated create account form.
+	Password is now *** instead of displaying.
+Added wells to schedule.
+Added a table to hold saved recommendations under profile.
+Attempted to modify recommendations but was unable to test due to backend issues.s
