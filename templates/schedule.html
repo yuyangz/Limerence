@@ -1,9 +1,7 @@
 {% extends "user_base.html" %}
 
 {% block title %}
-<title>
   Schedule
-</title>
 {% endblock %}
 
 
@@ -14,7 +12,7 @@
     <h1>Welcome {{name}} to your SCHEDULE</h1>
   </div>
   <hr>
-  <div>
+  <div class = "well">
     <table class="table">
       <thead>
 	<tr>
@@ -27,9 +25,10 @@
       {% for i in clock %}
       <tbody>
 	<tr>
-	  <td><center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}"><button type="button" class="close" aria-label="Close">
-		  <span aria-hidden="true">&times;</span>
-	  </button></a> </center></td>
+	  <td><center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}"> <button type="button" class="btn btn-default btn-med">
+		 <span class="glyphicon glyphicon-remove"aria-hidden="true"></span> 
+	       </button>
+	 </a> </center></td>
           <td>{{i}}:00</td>
           <td>{{sch[i]["activity"]}}</td>
           <td>

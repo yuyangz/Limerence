@@ -61,6 +61,76 @@
       <button class="btn btn-default">Edit profile</button>
     </form>
 </div>
+<div class = "well">
+  <table class = "table">
+     <thead>
+       <tr>
+	  <th><h3>Remove Saved Recommendation</h3></th>
+          <th><h3>Add to Schedule?</h3></th>
+          <th><h3>Saved Recommendation</h3></th>
+          <th><h3>Time</h3></th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr>
+	 <td><center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">
+	       <button type="button" class="btn btn-default btn-med">
+		 <span class="glyphicon glyphicon-remove"aria-hidden="true"></span> 
+	       </button>
+	 </a> </center></td>
+	 <td><center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">
+	       <button type="button" class="btn btn-default btn-med">
+		 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 
+	       </button>
+	 </a> </center></td>
+                <td>Core workout</td>
+                <td>12:00-13:00</td>
+            </tr>
+       <tr>
+	 <td><center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">
+	       <button type="button" class="btn btn-default btn-med">
+		 <span class="glyphicon glyphicon-remove"aria-hidden="true"></span> 
+	       </button>
+	 </a> </center></td>
+	 <td><center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">
+		<button type="button" class="btn btn-default btn-med">
+		  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 
+		</button>
+	  </a> </center></td>
+                <td>Situps</td>
+                <td>15:00-16:00</td>
+            </tr>
+       <tr>
+	 <td><center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">
+	       <button type="button" class="btn btn-default btn-med">
+		 <span class="glyphicon glyphicon-remove"aria-hidden="true"></span> 
+	       </button>
+	 </a> </center></td>
+	 <td><center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">
+		<button type="button" class="btn btn-default btn-med">
+		  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 
+		</button>
+	  </a> </center></td>
+                <td>Pushups</td>
+                <td>17:00-18:00</td>
+            </tr>
+       <tr>
+	 <td><center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">
+	       <button type="button" class="btn btn-default btn-med">
+		 <span class="glyphicon glyphicon-remove"aria-hidden="true"></span> 
+	       </button>
+	 </a> </center></td>
+	 <td><center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">
+		<button type="button" class="btn btn-default btn-med">
+		  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 
+		</button>
+	  </a> </center></td>
+                <td>Central Park</td>
+                <td>19:00-20:00</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
 </div>
 
 {% endblock %}
