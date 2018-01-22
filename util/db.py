@@ -186,7 +186,7 @@ def get_schedule(username):
 
 '''
 Takes in Dict in format:
-  {time: {"activity": "ex_activity", "music": "ex_song"], time: {"activity": "ex_activity2", "music": "ex_song2"], ...}
+  {time: {"activity": "ex_activity", "music": "ex_song"}, time: {"activity": "ex_activity2", "music": "ex_song2"}, ...}
   "time" is a single int representing the start time (each hour has a section in the table)
   ex: if time = 4 then the activities corresponding to that time go on from 4am-5am
 '''
@@ -194,7 +194,7 @@ def reset_sched(username, sched_dict):
     db = get_db()
     c = get_cursor(db)
     if(check_account_exist(username)):
-        for time in sched_dict:
+        for time in range(24):
             activity = sched_dict[time]["activity"]
             song = sched_dict[time]["music"]
             print("Inserting: ")

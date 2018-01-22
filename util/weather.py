@@ -1,6 +1,11 @@
 from __future__ import print_function
 import requests, time
-import keys
+from . import keys
+
+global weather
+global last_city
+global last_time
+global WEATHER_KEY
 
 WEATHER_KEY = "" # Input API Key
 
@@ -10,15 +15,15 @@ last_time = None
 
 
 # populates global weather with json from api
-def get_weather(city):
+# designed for internal use
+def get_raw_weather(city):
     global weather
     global last_city
     global last_time
     global WEATHER_KEY
-    if WEATHER_KEY == "":
-        WEATHER_KEY = keys.get_key("openweathermap")[0]
 
     if city == last_city and last_time - time.time() < 60: # 60 sec
+        print('last_city triggered by ' + city)
         return weather
 
     last_city = city
@@ -34,32 +39,37 @@ def GMT(place):
         return -5
 
 
-def print_time(unix_time, GMT):
+def get_time(unix_time, GMT):
     time = unix_time % (60 * 60 * 24)
     seconds = time % (24 * 60) % 60
     minutes = time % (24 * 60) / 60
     hours = time / (60 * 60)
-    # print hours, ":", minutes, ":", seconds, " GMT"
-    print('{}:{}:{}'.format(hours + GMT, minutes, seconds))
-    # print hours + GMT, minutes, seconds
+    return '{}:{}:{}'.format(hours + GMT, minutes, seconds)
 
 
 def get_forecast(city):
+    """ returns a tuple of (description, temperature, humidity, sunrise, sunset)"""
     global WEATHER_KEY
     if WEATHER_KEY == "":
         WEATHER_KEY = keys.get_key("openweathermap")[0]
 
-    weather = get_weather(city)
+    weather = get_raw_weather(city)
+    if 'message' in weather:        # inputed invalid city
+        print(weather['message'])
+        return 'Extreme', -100, 100, "00:00:00", "00:00:00"
+
     # prints description (e.g. cloudy, rain)
-    print(weather['weather'][0]['main'])
+    print("description", weather['weather'][0]['main'])
     # prints temperature (converted to Farenheit from Kelvin)
-    print(weather['main']['temp'] * 9 / 5 - 459.67)
+    print("temperature", weather['main']['temp'] * 9 / 5 - 459.67)
     # prints humidity
-    print(weather['main']['humidity'])
+    print("humidity", weather['main']['humidity'])
     # sunrise and sunset from midnight
-    print_time(weather['sys']['sunrise'], GMT('NY'))
-    print_time(weather['sys']['sunset'], GMT('NY'))
-    return weather['weather'][0]['main']
+    print("sunrise", get_time(weather['sys']['sunrise'], GMT('NY')))
+    print("sunset", get_time(weather['sys']['sunset'], GMT('NY')))
+    return weather['weather'][0]['main'], weather['main']['temp'] * 9 / 5 - 459.67, \
+            weather['main']['humidity'], get_time(weather['sys']['sunrise'], GMT('NY')),\
+            get_time(weather['sys']['sunset'], GMT('NY'))
 
 
 if __name__ == '__main__':
