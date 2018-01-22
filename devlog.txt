@@ -286,4 +286,7 @@ Updated create account form.
 	Password is now *** instead of displaying.
 Added wells to schedule.
 Added a table to hold saved recommendations under profile.
-Attempted to modify recommendations but was unable to test due to backend issues.s
+Attempted to modify recommendations but was unable to test due to backend issues.
+Added javascript to home page.
+	This way description of page will not suddenly pop up and overwhelm user.
+	Clicking on link will fade in the information and the link will fade out. 
