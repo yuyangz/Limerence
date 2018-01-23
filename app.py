@@ -90,6 +90,7 @@ def recommendations():
 	for i in range(10):
 		food_data = schedule.get_food(path)
 		foods[food_data[0]] = food_data[1]
+        excercises.append(schedule.get_workout())
 	clock = range(localtime()[3], 22)
 	print len(clock)
 	if len(clock) == 0:
