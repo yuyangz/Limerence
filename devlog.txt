@@ -314,3 +314,12 @@ lamI -- 2018-01-22 18:33
 - Resolved issues regarding SIGPIPE (not supported by Windows)
 - Fixed bug in db.py where time was a dict instead of int values
 - Replaced random flask messages to more relevant ones or replaced altogether
+
+zhangY —- 2018-01-22 23:00
+------------------------------
+Created home page for logged in users.
+	Home page will present users with the possible options of recommendation, schedule, or profile.
+	Done using multiple wells and buttons aligned.
+Due to misunderstanding, certain aspects of templates had to be revived.
+	Recreated table for saved recommendations under profile.
+	Changed certain icons for aesthetic purpose.
