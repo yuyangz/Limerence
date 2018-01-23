@@ -39,10 +39,9 @@ def get_food_nutrients(food_json):
     url = "https://api.edamam.com/api/food-database/nutrients?&app_id="+EDAMAM_APP_ID+"&app_key="+EDAMAM_APP_KEY
     nutrients = requests.post(url, json=food_json).json()
     print(nutrients['calories'])
-    print(nutrients['dietLabels'])
     print(nutrients['healthLabels'])
-    print(nutrients['cautions'])
-    print(nutrients['uri'])
+    print(nutrients['ingredients'])
+    print(nutrients['totalNutrients'])
     return nutrients
 
 
