@@ -157,7 +157,7 @@ def place_shower(schedule, song_list, username):
 
 	for interval in range(shower_time, 22):
 		if schedule[interval] == EMPTY:
-			schedule[interval], song_list[interval] = SHOWER, get_music(interval, usernam, True)
+			schedule[interval], song_list[interval] = SHOWER, get_music(interval, username, True)
 			break
 
 
