@@ -24,9 +24,16 @@
       {% for i in clock %}
       <tbody>
 	<tr>
-	  <td><center><a href="/rmSchedule?id={{i}}"><button type="button" class="close" aria-label="Close">
-		  <span aria-hidden="true">&times;</span>
-	  </button></a> </center></td>
+	  <td>
+	    <center>
+	      <a href="/rmSchedule?id={{i}}">
+		<button type="button" class="btn btn-default btn-med" value="Submit">
+		  <span class="glyphicon glyphicon-remove" aria-hidden="true">
+		  </span>
+		</button>
+	      </a>
+	    </center>
+	  </td>
           <td>{{i}}:00</td>
           <td>{{sch[i]}}</td>
           <td>
