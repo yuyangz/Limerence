@@ -9,7 +9,7 @@
        {% block title %}
        {% endblock %}
      </title>
-     <link rel="stylesheet" type="text/css" href="static/home.css">
+     <link rel="stylesheet" type="text/css" href="static/guess.css">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
      <script>
        $(document).ready(function(){
@@ -22,96 +22,7 @@
 
    </head>
 
-   <style>
-     .navbar {
-     background-color: #DEECF4;
-     margin-bottom: 0;
-     border-radius: 0;
-     border-color: transparent;
-     padding: 0cm 0cm 0cm 1.5cm;
-     }
-
-
-     div.slide-left {
-     width:100%;
-     overflow:hidden;
-     }
-     div.slide-left h1 {
-     animation: slide-left 5s;
-     }
-
-     @keyframes slide-left {
-     from {
-     margin-left: 100%;
-     width: 300%;
-     }
-
-     to {
-     margin-left: 0%;
-     width: 100%;
-     }
-     }
-
-
-     #grad1 {
-     background: #619DCF; /* For browsers that do not support gradients */
-     background: linear-gradient(to bottom right, #619DCF, white); /* Standard syntax (must be last) */
-     }
-
-     h1 {
-     font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-     font-weight: 200;
-     letter-spacing: 1px;
-     color: #E9F2F7;
-     }
-
-     h2{
-     color: red;
-     font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-     font-weight: 50;
-     letter-spacing: 1px;
-     }
-     li{
-     font-weight: bold;
-     }
-
-
-     .col-sm-12{
-     text-align: justify;
-     height: 100%;
-     padding: 0cm 2cm 1cm 2cm;
-
-     }
-
-     .well{
-     background: #E3ECF5;
-     }
-
-     h4{
-     display:none;
-     color: black;
-     font-size: 20px;
-     opacity: 0.5;
-     text-align: justify;
-     }
-
-     h5{
-     color: #58819F; font-size: 100px; opacity: 0.75;
-     }
-
-     .btn-link{
-     color: #58819F; font-size: 20px; opacity: 0.65;
-     }
-
-     .btn-link:hover{
-    text-decoration: none;
-     }
-
-
-   </style>
-
-
-   <body>
+   <body onload="myFunction()">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -125,7 +36,20 @@
 </nav>
 
 {% block content %}
-  {% endblock %}
+{% endblock %}
+
+<script>
+var myVar;
+
+function myFunction() {
+    myVar = setTimeout(showPage, 1000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+</script>
    </body>
 
 
