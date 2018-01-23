@@ -7,6 +7,7 @@ from . import edamam
 
 global last_person
 global person_detail
+exercises = []
 
 last_person = None
 person_detail = None
@@ -85,6 +86,7 @@ def get_food(filename):
 	food = random.choice(f.read().splitlines()).rstrip()
 	data = edamam.get_food_nutrients(edamam.get_food_options(food))
 	return [food, data]
+	#return ["Hello", {"calories":54}]
 
 def attempt_breakfast(schedule, song_list, breakfast_time, username):
 	if breakfast_time > 11:
@@ -128,6 +130,22 @@ def attempt_dinner(schedule, song_list, start_time, username):
 	schedule[dinner_time], song_list[dinner_time] = (DINNER + ": " + dinner_food[0] + "Calories: " + str(dinner_food[1]["calories"])), get_music(dinner_time, username, True)
 	return True
 
+def get_workout():
+	global exercises
+	if len(exercises) == 0:
+		f = open("./static/exercises.txt")
+		curr = ""
+		for i, line in enumerate(f):
+			#print ("Line #: " + str(i) + " Line: " + line)
+			if line[:4] == "<h2>":
+				#print ("H2!")
+				exercises.append(curr)
+				curr = line
+			else:
+				curr += line
+	#print (exercises)
+	return random.choice(exercises)
+
 
 def attempt_workout(schedule, song_list, start_time, username):
 	workout_time = -1
@@ -145,9 +163,8 @@ def attempt_workout(schedule, song_list, start_time, username):
 	if workout_time == -1:
 		print(WORKOUT + ' is unavailable at this time.')
 		return False
-	schedule[workout_time], song_list[workout_time] = WORKOUT1, get_music(workout_time, username, True)
-	schedule[workout_time + 1], song_list[workout_time + 1] = WORKOUT2, get_music(workout_time + 1, username, True)
-	schedule[workout_time + 2], song_list[workout_time + 2] = WORKOUT3, get_music(workout_time + 2, username, True)
+
+	schedule[workout_time], song_list[workout_time] = get_workout(), get_music(workout_time, username, True)
 	return True
 
 
@@ -194,7 +211,7 @@ def new_schedule(username, curr_time=time.localtime()):
 	for i in range(start_hr, 22):	# 10PM sleep
 		if song_list[i] == EMPTY:
 			song_list[i] = get_music(i, username, True)
-			schedule[i] = random.choice(random_events)
+			#schedule[i] = random.choice(random_events)
 	return schedule, song_list
 
 

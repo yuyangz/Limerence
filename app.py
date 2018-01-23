@@ -80,12 +80,21 @@ def recommendations():
 	username = session["username"]
 	rec_songs = schedule.get_music(time.localtime()[3], username, False)
 	sch = [] #List Of Activities
-	excercises = []
+	excercises = [] #excercises
+	foods = {}
+	#If Breakfast time
+	if(time.localtime()[3] < 7):
+		path = "./static/breakfast.txt"
+	else:
+		path = "./static/lunchdinner.txt"
+	for i in range(10):
+		food_data = schedule.get_food(path)
+		foods[food_data[0]] = food_data[1]
 	clock = range(localtime()[3], 22)
 	print len(clock)
 	if len(clock) == 0:
 		clock = 0
-	return render_template("recommendations.html", name=username.title(), excer = excercises, sch=sch, songs=rec_songs, clock = clock)
+	return render_template("recommendations.html", name=username.title(), excer = excercises, sch=sch, songs=rec_songs, clock = clock, foods=foods)
 
 
 @app.route("/recommended")
@@ -194,11 +203,6 @@ def logged_out():
 @app.route("/userhome")
 def user_home():
         return render_template("user_home.html")
-
-@app.route("/fooddescription")
-def food_descriptions():
-        return render_template("food_descriptions.html")
-
 
 
 if __name__ == "__main__":
