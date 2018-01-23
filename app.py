@@ -206,6 +206,10 @@ def logged_out():
 def user_home():
         return render_template("user_home.html")
 
+@app.route("/fooddescription")
+def food_description():
+        return render_template("food_descriptions.html")
+
 
 if __name__ == "__main__":
 	g_schedule = None
