@@ -199,6 +199,10 @@ def logged_out():
 	session.clear()  # Ends session
 	return redirect("/")  # Redirecting to login
 
+@app.route("/userhome")
+def user_home():
+        return render_template("user_home.html")
+
 
 if __name__ == "__main__":
 	g_schedule = None
