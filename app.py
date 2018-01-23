@@ -57,7 +57,6 @@ def scheduler():
         db.edit_user_pref(username, "last_accessed", curr_time)
     return render_template("schedule.html", name=username.title(), sch=g_schedule, song=g_song_lists, clock=range(localtime()[3], 24))
 
-
 @app.route("/rmSchedule")
 def rm_schedule():
 	if "username" not in session.keys():
@@ -68,26 +67,6 @@ def rm_schedule():
 	id = request.args["id"]
 	g_schedule, g_song_lists = schedule.clear_schedule(g_schedule, g_song_lists, session["username"], interval=id)
 	return render_template("schedule.html", name=session["username"].title(), sch=g_schedule, song=g_song_lists, clock=range(localtime()[3], 24))
-
-
-@app.route("/add_recommendation/<pref>/<new_val>")
-def add_rec(pref, new_val):
-    if "username" not in session.keys():
-		return redirect(url_for("login"))
-    username = session["username"]
-    cats = ["music", "activity"]
-    if pref not in cats:
-        print "CANNOT CHANGE SCHED"
-        return redirect(url_for("recommendations"))
-    time = request.args["time_hr"]
-    curr = db.get_activ_music(username, int(time))
-    for cat in cats:
-        if pref == cat:
-            curr[pref] = new_val
-            break
-    db.edit_sched(username, time, curr)
-    return redirect(url_for(""))
-
 
 @app.route("/recommendations")
 @app.route("/recommendations/<pref>/<new_val>")
@@ -131,18 +110,6 @@ def recommendations(pref=None, new_val=None):
     if len(clock) == 0:
 		clock = 0
     return render_template("recommendations.html", name=username.title(), exercises = exercises, sch=sch, songs=rec_songs, clock = clock, foods=foods)
-
-
-@app.route("/recommended")
-def recommended_spot():
-	if "username" not in session.keys():
-		return redirect(url_for("login"))
-	global g_schedule
-	global g_song_lists
-
-	print(request.args["time_hr"], request.args["event"])
-	g_schedule[int(request.args["time_hr"])] = request.args["event"]
-	return redirect(url_for("scheduler"))
 
 
 @app.route("/")

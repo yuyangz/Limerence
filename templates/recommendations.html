@@ -97,6 +97,7 @@
         {% for b in exercises %}
         <tbody>
             <tr>
+              <form action = "/recommendations/activity/{{ b }}">
                 <td>
                     <center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">
                         <button type="button" class="btn btn-default btn-med">
@@ -122,6 +123,7 @@
                     {% endif %}
                 </td>
                 <td>{{ b|safe }}</td>
+              </form>
             </tr>
             {% endfor %}
         </tbody>
@@ -150,6 +152,7 @@
         {% for c in sch %}
         <tbody>
             <tr>
+              <form action = "/recommendations/activity/{{ c }}">
                 <td>
                     <center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">
                         <button type="button" class="btn btn-default btn-med">
@@ -175,6 +178,7 @@
                     {% endif %}
                 </td>
                 <td>{{c}}</td>
+              </form>
             </tr>
             {% endfor %}
         </tbody>
@@ -203,10 +207,10 @@
                 </th>
             </tr>
         </thead>
-        {% for i in songs %}
+        {% for f in foods %}
         <tbody>
             <tr>
-                <form action = "/recommended">
+                <form action = "/recommendations/activity/{{ f }}">
                     <div class="form-group">
                         <td>
                             <button type="button" class="btn btn-default btn-med" value="Submit">
@@ -229,7 +233,9 @@
                             "There are no more spots for this recommendation in your schedule"
                             {% endif %}
                         </td>
-                        <td><iframe src="https://open.spotify.com/embed?uri={{i}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe></td>
+                        <td>
+                            {{ f }}
+                        </td>
                         <td>
                             <a href="/fooddescription" class="btn btn-default" role="button">More Information</a>
                         </td>
