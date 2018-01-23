@@ -3,6 +3,7 @@ import time, random
 from . import spotify
 from . import db
 from . import weather
+from . import edamam
 
 global last_person
 global person_detail
@@ -79,6 +80,11 @@ def clear_schedule(schedule, song_list, username, interval=None):
 		schedule[num], song_list[num] = SLEEP, get_music(num, username, True)
 	return schedule, song_list
 
+def get_food(filename):
+	f = open(filename)
+	food = random.choice(f.read().splitlines()).rstrip()
+	data = edamam.get_food_nutrients(edamam.get_food_options(food))
+	return [food, data]
 
 def attempt_breakfast(schedule, song_list, breakfast_time, username):
 	if breakfast_time > 11:
@@ -86,7 +92,8 @@ def attempt_breakfast(schedule, song_list, breakfast_time, username):
 		return False
 	if breakfast_time < 6:
 		breakfast_time = 6
-	schedule[breakfast_time], song_list[breakfast_time] = BREAKFAST, get_music(breakfast_time, username, True)
+	breakfast_food = get_food("./static/breakfast.txt")
+	schedule[breakfast_time], song_list[breakfast_time] = (BREAKFAST + ": " + breakfast_food[0] + "Calories: " + str(breakfast_food[1]["calories"])), get_music(breakfast_time, username, True)
 	return True
 
 
@@ -101,7 +108,8 @@ def attempt_lunch(schedule, song_list, start_time, username):
 		return False
 	if lunch_time == start_time and lunch_time < 12:
 		lunch_time = 12
-	schedule[lunch_time], song_list[lunch_time] = LUNCH, get_music(lunch_time, username, True)
+	lunch_food = get_food("./static/lunchdinner.txt")
+	schedule[lunch_time], song_list[lunch_time] = (LUNCH + ": " + lunch_food[0] + " Calories: " + str(lunch_food[1]["calories"])), get_music(lunch_time, username, True)
 	return True
 
 
@@ -116,7 +124,8 @@ def attempt_dinner(schedule, song_list, start_time, username):
 		return False
 	if dinner_time == start_time and dinner_time < 17:
 		dinner_time = 17
-	schedule[dinner_time], song_list[dinner_time] = DINNER, get_music(dinner_time, username, True)
+	dinner_food = get_food("./static/lunchdinner.txt")
+	schedule[dinner_time], song_list[dinner_time] = (DINNER + ": " + dinner_food[0] + "Calories: " + str(dinner_food[1]["calories"])), get_music(dinner_time, username, True)
 	return True
 
 

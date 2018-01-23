@@ -1,7 +1,7 @@
 import requests, time, keys
 
-EDAMAM_APP_KEY = # insert app key
-EDAMAM_APP_ID = # insert app ix
+EDAMAM_APP_KEY = ""
+EDAMAM_APP_ID = ""
 
 
 def get_food_options(food):
@@ -43,6 +43,7 @@ def get_food_nutrients(food_json):
     print(nutrients['healthLabels'])
     print(nutrients['cautions'])
     print(nutrients['uri'])
+    return nutrients
 
 
 def print_food_json(food_json):
