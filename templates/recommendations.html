@@ -89,7 +89,7 @@
 
 	</tr>
       </thead>
-      {% for b in excer %}
+      {% for b in exercises %}
       <tbody>
 	<tr>
 	  <td><center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">
@@ -113,7 +113,7 @@
           "There are no more spots for this recommendation in your schedule"
         {% endif %}
     </td>
-          <td>{{b|safe}}</td>
+          <td>{{ b|safe }}</td>
 
 </tr>
 {% endfor %}

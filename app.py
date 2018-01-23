@@ -33,7 +33,7 @@ def scheduler():
 	# If we have already accessed the schedule today
 	if datetime.fromtimestamp(curr_time).date() == datetime.fromtimestamp(last_accessed).date():
 		if g_schedule is not None and g_song_lists is not None:
-			return render_template("schedule.html", name=username, sch=g_schedule, \
+			return render_template("schedule.html", name=username.title(), sch=g_schedule, \
 				song=g_song_lists, clock=range(localtime()[3], 24))
 
 		# else not stored in memory -> must retrieve from database
@@ -56,7 +56,7 @@ def scheduler():
 
 		db.reset_sched(username, combined_sch)
 		db.edit_user_pref(username, "last_accessed", curr_time)
-	return render_template("schedule.html", name=username, sch=g_schedule, song=g_song_lists,\
+	return render_template("schedule.html", name=username.title(), sch=g_schedule, song=g_song_lists,\
 		clock=range(localtime()[3], 24))
 
 
@@ -69,33 +69,34 @@ def rm_schedule():
 
 	id = request.args["id"]
 	g_schedule, g_song_lists = schedule.clear_schedule(g_schedule, g_song_lists, session["username"], interval=id)
-	return render_template("schedule.html", name=session["username"], sch=g_schedule, song=g_song_lists,
+	return render_template("schedule.html", name=session["username"].title(), sch=g_schedule, song=g_song_lists,
 						   clock=range(localtime()[3], 24))
 
 
 @app.route("/recommendations")
 def recommendations():
-	if "username" not in session.keys():
-		return redirect(url_for("login"))
-	username = session["username"]
-	rec_songs = schedule.get_music(time.localtime()[3], username, False)
-	sch = [] #List Of Activities
-	excercises = [] #excercises
-	foods = {}
+    if "username" not in session.keys():
+        return redirect(url_for("login"))
+    username = session["username"]
+    rec_songs = schedule.get_music(time.localtime()[3], username, False)
+    sch = [] #List Of Activities
+    exercises = [] #exercises
+    foods = {}
 	#If Breakfast time
-	if(time.localtime()[3] < 7):
+    if(time.localtime()[3] < 7):
 		path = "./static/breakfast.txt"
-	else:
+    else:
 		path = "./static/lunchdinner.txt"
-	for i in range(10):
-		food_data = schedule.get_food(path)
-		foods[food_data[0]] = food_data[1]
-        excercises.append(schedule.get_workout())
-	clock = range(localtime()[3], 22)
-	print len(clock)
-	if len(clock) == 0:
+    for i in range(10):
+        food_data = schedule.get_food(path)
+        foods[food_data[0]] = food_data[1]
+        exercises.append(schedule.get_workout())
+    clock = range(localtime()[3], 22)
+    print len(clock)
+    print (exercises)
+    if len(clock) == 0:
 		clock = 0
-	return render_template("recommendations.html", name=username.title(), excer = excercises, sch=sch, songs=rec_songs, clock = clock, foods=foods)
+    return render_template("recommendations.html", name=username.title(), exercises = exercises, sch=sch, songs=rec_songs, clock = clock, foods=foods)
 
 
 @app.route("/recommended")
@@ -117,14 +118,14 @@ def hello_world():
 	Otherwise, the login page is displayed
 	'''
 	if "username" in session.keys():
-		return render_template("schedule.html", name=session["username"])
+		return render_template("schedule.html", name=session["username"].title())
 	return render_template("home.html")
 
 
 @app.route("/createaccount")
 def display_signup():
 	if "username" in session.keys():
-		return render_template("schedule.html", name=session["username"])
+		return render_template("schedule.html", name=session["username"].title())
 	return render_template("createaccount.html")
 
 
@@ -163,7 +164,7 @@ def login():
 def logged_in():
 	if "username" not in session.keys():
 		return redirect(url_for("login"))
-	return render_template("profile.html", name=session["username"],
+	return render_template("profile.html", name=session["username"].title(),
 						   info=db.get_all_user_preferences(session["username"]))
 
 
@@ -171,7 +172,7 @@ def logged_in():
 def edit_profile():
 	if "username" not in session.keys():
 		return redirect(url_for("login"))
-	return render_template("edit_profile.html", name=session["username"],
+	return render_template("edit_profile.html", name=session["username"].title(),
 						   info=db.get_all_user_preferences(session["username"]))
 
 
