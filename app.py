@@ -37,24 +37,24 @@ def scheduler():
 				song=g_song_lists, clock=range(localtime()[3], 24))
 
 		# else not stored in memory -> must retrieve from database
-		combinded_sch = db.get_schedule(username)
+		combined_sch = db.get_schedule(username)
 
 		g_song_lists = [schedule.EMPTY] * 24
 		g_schedule = [schedule.EMPTY] * 24
 		for i in range(24):
-			g_schedule[i] = combinded_sch[i]["activity"]
-			g_song_lists[i] = combinded_sch[i]["music"]
+			g_schedule[i] = combined_sch[i]["activity"]
+			g_song_lists[i] = combined_sch[i]["music"]
 
 	else:
 		sch = schedule.new_schedule(username)
 		g_schedule = sch[0]
 		g_song_lists = sch[1]
 
-		combinded_sch = [schedule.EMPTY] * 24
+		combined_sch = [schedule.EMPTY] * 24
 		for i in range(24):
-			combinded_sch[i] = {"activity": g_schedule[i], "music": g_song_lists[i]}
+			combined_sch[i] = {"activity": g_schedule[i], "music": g_song_lists[i]}
 
-		db.reset_sched(username, combinded_sch)
+		db.reset_sched(username, combined_sch)
 		db.edit_user_pref(username, "last_accessed", curr_time)
 	return render_template("schedule.html", name=username, sch=g_schedule, song=g_song_lists,\
 		clock=range(localtime()[3], 24))

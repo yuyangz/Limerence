@@ -211,6 +211,12 @@ def reset_sched(username, sched_dict):
     db = get_db()
     c = get_cursor(db)
     if(check_account_exist(username)):
+        delcom = "DROP TABLE " + username
+        c.execute(delcom)
+        db.commit()
+        crecommand = "CREATE TABLE " + username + "(time INT PRIMARY KEY, activity TEXT, music TEXT);"
+        c.execute(crecommand)
+        db.commit()
         for time in range(24):
             activity = sched_dict[time]["activity"]
             song = sched_dict[time]["music"]

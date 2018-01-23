@@ -162,7 +162,10 @@ def place_shower(schedule, song_list, username):
 
 
 def place_sleep(schedule, song_list, username):
+	sleep_hrs_without_music = {0,1,2,3,4,5,23}
 	schedule[22], song_list[22] = SLEEP, get_music(10, username, True)
+	for hr in sleep_hrs_without_music:
+		schedule[hr] = SLEEP
 
 
 def new_schedule(username, curr_time=time.localtime()):
