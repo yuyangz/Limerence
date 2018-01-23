@@ -82,9 +82,14 @@ def clear_schedule(schedule, song_list, username, interval=None):
 	return schedule, song_list
 
 def get_food(filename):
-	f = open(filename)
-	food = random.choice(f.read().splitlines()).rstrip()
-	data = edamam.get_food_nutrients(edamam.get_food_options(food))
+	try:
+		f = open(filename)
+		food = random.choice(f.read().splitlines()).rstrip()
+		data = edamam.get_food_nutrients(edamam.get_food_options(food))
+	except:
+		print ("NO URI FOR FOOD: " + food)
+		print ("Trying different food...")
+		return get_food(filename)
 	return [food, data]
 	#return ["Hello", {"calories":54}]
 

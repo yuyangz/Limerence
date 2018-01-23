@@ -232,11 +232,10 @@ def reset_sched(username, sched_dict):
 
 '''
 Takes in a username and time of day
-input time is in format of '2011-05-03 17:45:35.177000' (use str(datetime.now()))
 Returns dict of format {"activity": "ex_activity", "music": "ex_song"}
 '''
 def get_activ_music(username, time):
-    hour = int(time[11:13])
+    hour = int(time)
     sched = get_schedule(username)
     if(sched != None and hour in sched):
         print ("Time: " + str(hour))

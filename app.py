@@ -20,44 +20,42 @@ global g_song_lists
 
 @app.route("/scheduler")
 def scheduler():
-	if "username" not in session.keys():
-		return redirect(url_for("login"))
-	global g_schedule
-	global g_song_lists
+    if "username" not in session.keys():
+        return redirect(url_for("login"))
+    global g_schedule
+    global g_song_lists
 
-	username = session["username"]
+    username = session["username"]
 
-	curr_time = int(time.time())  # epoch time
-	last_accessed = db.get_user_pref(username, "last_accessed")[0]
+    curr_time = int(time.time())  # epoch time
+    last_accessed = db.get_user_pref(username, "last_accessed")[0]
 
 	# If we have already accessed the schedule today
-	if datetime.fromtimestamp(curr_time).date() == datetime.fromtimestamp(last_accessed).date():
-		if g_schedule is not None and g_song_lists is not None:
-			return render_template("schedule.html", name=username.title(), sch=g_schedule, \
+    if datetime.fromtimestamp(curr_time).date() == datetime.fromtimestamp(last_accessed).date():
+        if g_schedule is not None and g_song_lists is not None:
+            return render_template("schedule.html", name=username.title(), sch=g_schedule, \
 				song=g_song_lists, clock=range(localtime()[3], 24))
 
 		# else not stored in memory -> must retrieve from database
-		combined_sch = db.get_schedule(username)
+        combined_sch = db.get_schedule(username)
 
-		g_song_lists = [schedule.EMPTY] * 24
-		g_schedule = [schedule.EMPTY] * 24
-		for i in range(24):
+        g_song_lists = [schedule.EMPTY] * 24
+        g_schedule = [schedule.EMPTY] * 24
+        for i in range(24):
 			g_schedule[i] = combined_sch[i]["activity"]
 			g_song_lists[i] = combined_sch[i]["music"]
+    else:
+        sch = schedule.new_schedule(username)
+        g_schedule = sch[0]
+        g_song_lists = sch[1]
 
-	else:
-		sch = schedule.new_schedule(username)
-		g_schedule = sch[0]
-		g_song_lists = sch[1]
-
-		combined_sch = [schedule.EMPTY] * 24
-		for i in range(24):
+        combined_sch = [schedule.EMPTY] * 24
+        for i in range(24):
 			combined_sch[i] = {"activity": g_schedule[i], "music": g_song_lists[i]}
 
-		db.reset_sched(username, combined_sch)
-		db.edit_user_pref(username, "last_accessed", curr_time)
-	return render_template("schedule.html", name=username.title(), sch=g_schedule, song=g_song_lists,\
-		clock=range(localtime()[3], 24))
+        db.reset_sched(username, combined_sch)
+        db.edit_user_pref(username, "last_accessed", curr_time)
+    return render_template("schedule.html", name=username.title(), sch=g_schedule, song=g_song_lists, clock=range(localtime()[3], 24))
 
 
 @app.route("/rmSchedule")
@@ -69,15 +67,50 @@ def rm_schedule():
 
 	id = request.args["id"]
 	g_schedule, g_song_lists = schedule.clear_schedule(g_schedule, g_song_lists, session["username"], interval=id)
-	return render_template("schedule.html", name=session["username"].title(), sch=g_schedule, song=g_song_lists,
-						   clock=range(localtime()[3], 24))
+	return render_template("schedule.html", name=session["username"].title(), sch=g_schedule, song=g_song_lists, clock=range(localtime()[3], 24))
+
+
+@app.route("/add_recommendation/<pref>/<new_val>")
+def add_rec(pref, new_val):
+    if "username" not in session.keys():
+		return redirect(url_for("login"))
+    username = session["username"]
+    cats = ["music", "activity"]
+    if pref not in cats:
+        print "CANNOT CHANGE SCHED"
+        return redirect(url_for("recommendations"))
+    time = request.args["time_hr"]
+    curr = db.get_activ_music(username, int(time))
+    for cat in cats:
+        if pref == cat:
+            curr[pref] = new_val
+            break
+    db.edit_sched(username, time, curr)
+    return redirect(url_for(""))
 
 
 @app.route("/recommendations")
-def recommendations():
+@app.route("/recommendations/<pref>/<new_val>")
+def recommendations(pref=None, new_val=None):
     if "username" not in session.keys():
         return redirect(url_for("login"))
     username = session["username"]
+    if pref != None and new_val != None:
+        cats = ["music", "activity"]
+        if pref not in cats:
+            print "CANNOT CHANGE SCHED"
+            return redirect(url_for("recommendations"))
+        new_time = int(request.args["time_hr"])
+        curr = db.get_activ_music(username, int(new_time))
+        for cat in cats:
+            if pref == cat:
+                curr[pref] = new_val
+                break
+        db.edit_sched(username, new_time, curr)
+        if g_schedule is not None and g_song_lists is not None:
+            g_schedule[new_time] = curr["activity"]
+            g_song_lists[new_time] = curr["music"]
+        return redirect(url_for("scheduler"))
     rec_songs = schedule.get_music(time.localtime()[3], username, False)
     sch = [] #List Of Activities
     exercises = [] #exercises
@@ -88,12 +121,13 @@ def recommendations():
     else:
 		path = "./static/lunchdinner.txt"
     for i in range(10):
+        print i
         food_data = schedule.get_food(path)
         foods[food_data[0]] = food_data[1]
         exercises.append(schedule.get_workout())
     clock = range(localtime()[3], 22)
     print len(clock)
-    print (exercises)
+    #print (exercises)
     if len(clock) == 0:
 		clock = 0
     return render_template("recommendations.html", name=username.title(), exercises = exercises, sch=sch, songs=rec_songs, clock = clock, foods=foods)
