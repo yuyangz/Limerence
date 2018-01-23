@@ -6,13 +6,47 @@ Home
 
 {% block content %}
 <div class="col-sm-12 text-left"  id="grad1">
+  
    <div class="slide-left">
       <h1> Welcome {{ name }} </h1>
-      </div>
+   </div>
+   
    <hr>
-   <div class = "well">
-  <button type="button" class="btn btn-default">Default</button>
-  </div>
+   
+  
+     
+     <div class = "well well-sm col-sm-4">
+       <center>
+	 <a href ="/recommendations">
+	   <button type="button" class="btn btn-info">
+	     <center>
+	       Recommendations
+	       </center>
+	   </button>
+	 </a>
+	 </center>
+     </div>
+     
+     <div class = "well well-sm col-sm-4">
+       <center>
+	 <a href ="/scheduler">
+	   <button type="button" class="btn btn-info">
+	     Schedule
+	   </button>
+	 </a>
+       </center>
+     </div>
+
+      <div class = "well well-sm col-sm-4">
+       <center>
+	 <a href ="/profile">
+	   <button type="button" class="btn btn-info">
+	     Profile
+	   </button>
+	 </a>
+       </center>
+      </div>
+      
 </div>
 {% endblock %}
 
