@@ -111,7 +111,7 @@ def attempt_lunch(schedule, song_list, start_time, username):
 	if lunch_time == start_time and lunch_time < 12:
 		lunch_time = 12
 	lunch_food = get_food("./static/lunchdinner.txt")
-	schedule[lunch_time], song_list[lunch_time] = (LUNCH + ": " + lunch_food[0] + " Calories: " + str(lunch_food[1]["calories"])), get_music(lunch_time, username, True)
+	schedule[lunch_time], song_list[lunch_time] = (LUNCH + ": " + lunch_food[0] + "<br>Calories: " + str(lunch_food[1]["calories"])), get_music(lunch_time, username, True)
 	return True
 
 
@@ -127,7 +127,7 @@ def attempt_dinner(schedule, song_list, start_time, username):
 	if dinner_time == start_time and dinner_time < 17:
 		dinner_time = 17
 	dinner_food = get_food("./static/lunchdinner.txt")
-	schedule[dinner_time], song_list[dinner_time] = (DINNER + ": " + dinner_food[0] + "Calories: " + str(dinner_food[1]["calories"])), get_music(dinner_time, username, True)
+	schedule[dinner_time], song_list[dinner_time] = (DINNER + ": " + dinner_food[0] + "<br>Calories: " + str(dinner_food[1]["calories"])), get_music(dinner_time, username, True)
 	return True
 
 def get_workout():
@@ -137,8 +137,8 @@ def get_workout():
 		curr = ""
 		for i, line in enumerate(f):
 			#print ("Line #: " + str(i) + " Line: " + line)
-			if line[:4] == "<h2>":
-				#print ("H2!")
+			if line[:2] == "<a":
+				#print ("<a>")
 				exercises.append(curr)
 				curr = line
 			else:

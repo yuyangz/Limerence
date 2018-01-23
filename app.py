@@ -176,16 +176,15 @@ def edit_profile():
 
 @app.route("/update_profile")
 def update_profile():
-	if "username" not in request.args:
-		flash("Not logged in")
-		return redirect(url_for("display_login"))
-	user = request.args["username"]
+    if "username" not in request.args:
+        flash("Not logged in")
+        return redirect(url_for("display_login"))
+    user = request.args["username"]
+    db.edit_all_user_pref(user, request.args)
+    db.edit_user_pref(user, "last_accessed", 0)
 
-	# "age", "height", "weight", "pfplink", "music", "excercise", "address", "email"
-	db.edit_all_user_pref(user, request.args)
-
-	flash("Profile successfully updated")
-	return redirect(url_for("logged_in"))
+    flash("Profile successfully updated")
+    return redirect(url_for("logged_in"))
 
 
 @app.route("/login")
