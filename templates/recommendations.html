@@ -10,12 +10,23 @@
     <h1>Welcome to your RECOMMENDATIONS {{name}} </h1>
   </div>
   <hr>
+  
+  <div class = "well">
+    <div class = "col-sm-2">
+      <h3> Today's weather: </h3>
+    </div>
+
+      <h3> Issa Rain </h3>
+    
+  </div>
+  
   <div class = "well">
     <h3>Music</h3>
     <table class="table">
       <thead>
 	<tr>
           <th><h3>Add to Schedule</h3></th>
+	  <th><h3>Save Recommendation</h3></th>
           <th><h3>Select a Time</h3></th>
           <th><h3>Recommendations</h3></th>
 
@@ -31,8 +42,13 @@
 		<button type="button" class="btn btn-default btn-med" value="Submit">
 		  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 		</button>
-	
 	      </td>
+
+	      <td>
+		<button type="button" class="btn btn-default btn-med" value="Submit">
+		  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+		</button>
+		</td>
     <td>
         {% if clock != 0 %}
           <select class="form-control" name="time_hr">
@@ -60,6 +76,7 @@
       <thead>
 	<tr>
           <th><h3>Add to Schedule</h3></th>
+	   <th><h3>Save Recommendation</h3></th>
           <th><h3>Select a Time</h3></th>
           <th><h3>Recommendations</h3></th>
 
@@ -73,6 +90,11 @@
 		  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 		</button>
 	  </a> </center></td>
+	   <td>
+		<button type="button" class="btn btn-default btn-med" value="Submit">
+		  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+		</button>
+		</td>
     <td>
         {% if clock != 0 %}
           <select class="form-control" name="time_hr">
@@ -99,6 +121,7 @@
       <thead>
 	<tr>
           <th><h3>Add to Schedule</h3></th>
+	   <th><h3>Save Recommendation</h3></th>
           <th><h3>Select a Time</h3></th>
           <th><h3>Recommendations</h3></th>
 
@@ -112,6 +135,11 @@
 		  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 		</button>
 	  </a> </center></td>
+	   <td>
+		<button type="button" class="btn btn-default btn-med" value="Submit">
+		  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+		</button>
+		</td>
     <td>
         {% if clock != 0 %}
           <select class="form-control" name="time_hr">
@@ -125,6 +153,57 @@
     </td>
           <td>{{c}}</td>
 </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<script src="../static/schedule.js"></script>
+</div>
+
+
+<div class = "well">
+    <h3>Foods</h3>
+    <table class="table">
+      <thead>
+	<tr>
+          <th><h3>Add to Schedule</h3></th>
+	  <th><h3>Save Recommendation</h3></th>
+          <th><h3>Select a Time</h3></th>
+          <th><h3>Recommendations</h3></th>
+
+	</tr>
+      </thead>
+      {% for i in songs %}
+      <tbody>
+	<tr>
+	  <form action = "/recommended">
+	    <div class="form-group">
+	      <td>
+	
+		<button type="button" class="btn btn-default btn-med" value="Submit">
+		  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+		</button>
+	      </td>
+
+	      <td>
+		<button type="button" class="btn btn-default btn-med" value="Submit">
+		  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+		</button>
+		</td>
+    <td>
+        {% if clock != 0 %}
+          <select class="form-control" name="time_hr">
+            {% for j in clock %}
+              <option value={{j}}>{{j}}:00</option>
+            {% endfor %}
+          </select>
+        {% else %}
+          "There are no more spots for this recommendation in your schedule"
+        {% endif %}
+    </td>
+          <td><iframe src="https://open.spotify.com/embed?uri={{i}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe></td>
+</td>
+</form>
 </tr>
 {% endfor %}
 </tbody>

@@ -144,7 +144,7 @@ def login():
 	if auth:
 		session["username"] = request.args["username"]
 		flash("Logged in!")
-		return redirect(url_for("logged_in"))
+		return redirect(url_for("user_home"))
 	flash("Credentials invalid")
 	return redirect(url_for("display_login"))
 
