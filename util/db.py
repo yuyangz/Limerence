@@ -239,6 +239,11 @@ def get_activ_music(username, time):
         return sched[hour]
     print "No Schedule Found"
 
+def edit_sched(username, time, new_val):
+    sched = get_schedule(username)
+    sched[time] = new_val
+    reset_sched(username, sched)
+
 
 
 '''

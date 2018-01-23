@@ -77,16 +77,15 @@ def rm_schedule():
 def recommendations():
 	if "username" not in session.keys():
 		return redirect(url_for("login"))
-	global g_schedule
-	global g_song_lists
-
-	if g_schedule == None:
-		flash("Check out your schedule first!")
-		return redirect(url_for("scheduler"))
-
-	events = schedule.random_events
-	return render_template("recommendations.html", name=session["username"], sch=events, \
-		num_events=range(len(events)), clock = range(localtime()[3], 22))
+	username = session["username"]
+	rec_songs = schedule.get_music(time.localtime()[3], username, False)
+	sch = [] #List Of Activities
+	excercises = []
+	clock = range(localtime()[3], 22)
+	print len(clock)
+	if len(clock) == 0:
+		clock = 0
+	return render_template("recommendations.html", name=username.title(), excer = excercises, sch=sch, songs=rec_songs, clock = clock)
 
 
 @app.route("/recommended")

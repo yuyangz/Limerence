@@ -32,14 +32,14 @@ time_to_val = {0: 0.1, 1: 0.1, 2: 0.1, 3: 0.1, 4: 0.1, 5: 0.1, 6: 0.5, 7: 0.5, 8
 	10: 0.6, 11: 0.7, 12: 0.75, 13: 0.8, 14: 0.9, 15: 1.0, 16: 0.9, 17: 0.7, 18: 0.5, 19: 0.4, \
 	20: 0.3, 21: 0.25, 22: 0.2, 23: 0.2}
 
-
-def __get_user_details(username):
+#we need to reload this if its for recommendations
+def __get_user_details(username, for_recommendations):
 	global last_person
 	global person_detail
 
 	if last_person == None:
 		last_person = username
-	elif last_person == username:
+	elif last_person == username and not for_recommendations:
 		print('obtained prior person_detail')
 		return person_detail
 	person_detail = {	"forecast" : weather.get_forecast(db.get_user_pref(username, "address")[0])[0],\
@@ -48,7 +48,7 @@ def __get_user_details(username):
 
 
 def get_music(time, username, is_single):
-	__get_user_details(username)
+	__get_user_details(username, not is_single)
 
 	genre = person_detail['music']
 	forecast = person_detail['forecast']
