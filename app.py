@@ -26,7 +26,7 @@ def scheduler():
 	global g_song_lists
 
 	username = session["username"]
-	
+
 	curr_time = int(time.time())  # epoch time
 	last_accessed = db.get_user_pref(username, "last_accessed")[0]
 
@@ -35,7 +35,7 @@ def scheduler():
 		if g_schedule is not None and g_song_lists is not None:
 			return render_template("schedule.html", name=username, sch=g_schedule, \
 				song=g_song_lists, clock=range(localtime()[3], 24))
-		
+
 		# else not stored in memory -> must retrieve from database
 		combinded_sch = db.get_schedule(username)
 
@@ -174,14 +174,7 @@ def update_profile():
 	user = request.args["username"]
 
 	# "age", "height", "weight", "pfplink", "music", "excercise", "address", "email"
-	db.edit_user_pref(user, "age", request.args['age'])
-	db.edit_user_pref(user, "height", request.args['height'])
-	db.edit_user_pref(user, "weight", request.args['weight'])
-	db.edit_user_pref(user, "pfplink", request.args['pfplink'])
-	db.edit_user_pref(user, "music", request.args['music'])
-	db.edit_user_pref(user, "excercise", request.args['excercise'])
-	db.edit_user_pref(user, "address", request.args['address'])
-	db.edit_user_pref(user, "email", request.args['email'])
+	db.edit_all_user_pref(user, request.args)
 
 	flash("Profile successfully updated")
 	return redirect(url_for("logged_in"))

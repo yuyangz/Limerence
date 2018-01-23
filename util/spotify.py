@@ -34,7 +34,7 @@ Takes in genre (all lowercase), danceability(0.0 to 1.0), and energy(0.0 to 1.0)
 Chooses a random song that fits the requirements
 Returns a URI to embed that song on the webpage using iframe
 '''
-def get_song(genre, energy):
+def get_song(genre, energy, is_rand):
     global ACCESS_TOKEN
     if ACCESS_TOKEN == "":
         get_access_token()
@@ -42,8 +42,14 @@ def get_song(genre, energy):
     headers = {"Authorization":("Bearer " + ACCESS_TOKEN), "Accept": "application/json", "Content-Type": "application/json"}
     response = json.loads(requests.get(url, headers=headers).text)
     tracks = response["tracks"]
-    track = random.choice(tracks)
+    if is_rand:
+        track = random.choice(tracks)
+        return track["uri"]
+    else:
+        uri_list = []
+        for track in tracks:
+            uri_list.append(track["uri"])
+        return uri_list
     #iframe = '<iframe src="' + track["uri"] + '" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>'
-    return track["uri"]
 
 #print get_song("pop", .25)
