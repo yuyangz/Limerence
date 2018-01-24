@@ -4,6 +4,7 @@ from datetime import datetime
 import time
 from util import schedule
 from time import localtime
+from util import eventbrite
 import os, cgi, hashlib, sys
 
 if sys.platform != 'win32':			# Windows does not support SIGPIPE
@@ -117,13 +118,14 @@ def recommendations(pref=None, new_val=None):
 
 @app.route("/")
 def hello_world():
-	'''
+    print eventbrite.get_events(11372)
+    '''
 	If session has a record of the correct username and password input, the user is logged in
 	Otherwise, the login page is displayed
 	'''
-	if "username" in session.keys():
+    if "username" in session.keys():
 		return render_template("schedule.html", name=session["username"].title())
-	return render_template("home.html")
+    return render_template("home.html")
 
 
 @app.route("/createaccount")
@@ -176,7 +178,7 @@ def logged_in():
 def edit_profile():
 	if "username" not in session.keys():
 		return redirect(url_for("login"))
-	return render_template("edit_profile.html", name=session["username"].title(),
+	return render_template("edit_profile.html", name=session["username"],
 						   info=db.get_all_user_preferences(session["username"]))
 
 

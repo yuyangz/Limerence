@@ -4,6 +4,7 @@ from . import spotify
 from . import db
 from . import weather
 from . import edamam
+from . import eventbrite
 
 global last_person
 global person_detail
@@ -45,8 +46,8 @@ def __get_user_details(username, for_recommendations):
 		print('obtained prior person_detail')
 		return person_detail
 	person_detail = {	"forecast" : weather.get_forecast(db.get_user_pref(username, "address")[0])[0],\
-						"music" : db.get_user_pref(username, "music")[0].lower()
-						}
+						"music" : db.get_user_pref(username, "music")[0].lower(),\
+						"zipcode" : int(db.get_user_pref(username, "address")[0])}
 
 
 def get_music(time, username, is_single):
@@ -198,6 +199,13 @@ def place_sleep(schedule, song_list, username):
 	for hr in sleep_hrs_without_music:
 		schedule[hr] = SLEEP
 
+def attempt_events(schedule, username, start_time):
+	zipcode = person_detail["zipcode"]
+	event = random.choice(eventbrite.get_events(zipcode)["top_match_events"])
+	for i in range(int(start_time), 22):
+		if schedule[i] == EMPTY:
+			schedule[i] = ("EVENT: <br>" + event["description"]["html"] + " <br><a href='" + event["url"] + "'>LINK</a>")
+
 
 def new_schedule(username, curr_time=time.localtime()):
 	print('It is currently {:02}:{:02}'.format(curr_time[3], curr_time[4]))
@@ -212,6 +220,7 @@ def new_schedule(username, curr_time=time.localtime()):
 	attempt_workout(schedule, song_list, start_hr, username)
 	place_shower(schedule, song_list, username)
 	place_sleep(schedule, song_list, username)
+	attempt_events(schedule, username, start_hr)
 
 	for i in range(start_hr, 22):	# 10PM sleep
 		if song_list[i] == EMPTY:

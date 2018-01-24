@@ -3,32 +3,32 @@ import requests, time
 from . import keys
 
 global weather
-global last_city
+global last_zip
 global last_time
 global WEATHER_KEY
 
 WEATHER_KEY = "" # Input API Key
 
 weather = None
-last_city = None    # if you call too many times, it locks you out for one hour...
+last_zip = None    # if you call too many times, it locks you out for one hour...
 last_time = None
 
 
 # populates global weather with json from api
 # designed for internal use
-def get_raw_weather(city):
+def get_raw_weather(zip):
     global weather
-    global last_city
+    global last_zip
     global last_time
     global WEATHER_KEY
 
-    if city == last_city and last_time - time.time() < 60: # 60 sec
-        print('last_city triggered by ' + city)
+    if zip == last_zip and last_time - time.time() < 60: # 60 sec
+        print('last_zip triggered by ' + zip)
         return weather
 
-    last_city = city
+    last_zip = zip
     last_time = time.time()
-    url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + WEATHER_KEY
+    url = "http://api.openweathermap.org/data/2.5/weather?zip=" + zip + "&appid=" + WEATHER_KEY
     # print url
     weather = requests.get(url).json()
     return weather
@@ -47,14 +47,14 @@ def get_time(unix_time, GMT):
     return '{}:{}:{}'.format(hours + GMT, minutes, seconds)
 
 
-def get_forecast(city):
+def get_forecast(zip):
     """ returns a tuple of (description, temperature, humidity, sunrise, sunset)"""
     global WEATHER_KEY
     if WEATHER_KEY == "":
         WEATHER_KEY = keys.get_key("openweathermap")[0]
 
-    weather = get_raw_weather(city)
-    if 'message' in weather:        # inputed invalid city
+    weather = get_raw_weather(zip)
+    if 'message' in weather:        # inputed invalid zip
         print(weather['message'])
         return 'Extreme', -100, 100, "00:00:00", "00:00:00"
 
@@ -74,11 +74,11 @@ def get_forecast(city):
 
 if __name__ == '__main__':
     global weather
-    global last_city
+    global last_zip
     global last_time
 
     weather = None
-    last_city = None
+    last_zip = None
     last_time = time.time()
 
     get_forecast('Boston')
