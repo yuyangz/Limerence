@@ -29,7 +29,7 @@ div.slide-left h1 {
 }
 
 
-grad1 {
+#grad1 {
     background: #619DCF; /* For browsers that do not support gradients */
     background: linear-gradient(to bottom right, #619DCF, white); /* Standard syntax (must be last) */
 }
