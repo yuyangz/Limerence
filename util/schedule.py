@@ -204,7 +204,7 @@ def get_event():
 	global g_events
 	zipcode = person_detail["zipcode"]
 	if g_events == None:
-		g_events = eventbrite.get_events(zipcode)["events"]
+		g_events = eventbrite.get_events(zipcode)["events"][:10]
 	event = random.choice(g_events)
 	return event
 

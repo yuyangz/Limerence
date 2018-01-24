@@ -28,10 +28,10 @@ topherM -- 1999-12-31 23:59
 ------------------------------------------
 OBSTACLES OVERCOME
 In terms of front end, we had issues regarding the height of the background.
-However, we soon realized that was because we were applying the background 
+However, we soon realized that was because we were applying the background
 to the divs itself and not the body. CSS was a bit of an issue too but that
 was mainly because the virtual environment did not refresh when we updated
-the file. 
+the file.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 UNRESOLVED ISSUES
@@ -43,13 +43,13 @@ UNRESOLVED ISSUES
 - Background is in two parts.
 	As we have a div, this cuts off the background when the div ends.
 	Because of this, the part under the div would be white. However,
-	in order to fill that up we had to fill up the body itself. Due 
+	in order to fill that up we had to fill up the body itself. Due
 	to that, there is two gradients overlapping.
 - Navbar still is not sticky.
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Using Javascript to allow text to pop up was certainly a nice touch to 
+Using Javascript to allow text to pop up was certainly a nice touch to
 our home screen. While this was a minor touch, we have a button for food
 descriptions that brings you to the previous page. If the user were to be
 curious and simply change the URL, pressing the back button will bring them
@@ -319,6 +319,11 @@ Added javascript to home page.
 	This way description of page will not suddenly pop up and overwhelm user.
 	Clicking on link will fade in the information and the link will fade out.
 
+anishS -- 2018-01-22 13:00
+------------------------------
+Added The Eventbrite API
+get_event() in schedules.py should get you a random event
+
 lamI -- 2018-01-22 18:33
 ------------------------------
 1. schedule
@@ -352,10 +357,19 @@ Due to misunderstanding, certain aspects of templates had to be revived.
 	Recreated table for saved recommendations under profile.
 	Changed certain icons for aesthetic purpose.
 
+anishS -- 2018-01-23 13:45
+-----------------------------
+Added Smart Recommendations -
+1) Exercises are equipped with links and demos
+2) limited to 10 songs, share same algorithm as schedule
+3) Rerouted additions to /Recommendations
+4) More even distribution of events, foods, exercises, sleep
+5) Food desc page from edamam now included
+
 zhangY —- 2018-01-23 21:30
 ------------------------------
 Attempted to create sticky navbar (did not accomplish).
-Added food description page. 
+Added food description page.
 	This page can be accessed through the recommendations page by clicking on “More Information” in regards to the food item.
 	This page will have a button that brings the user back to their previous page through means of Javascript.
 Table for recommendations have been modified for separation of events.

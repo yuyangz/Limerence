@@ -38,16 +38,16 @@ def create_account(userinfo):
     c = get_cursor(db)
 
     #Add User Properties
-    command1 = "INSERT INTO accounts VALUES(?, ?, ?, ?, ?, ?)"
+    command1 = "INSERT INTO accounts VALUES(?, ?, ?, ?, ?)"
     username = userinfo["username"]
     password = userinfo["pwd1"]
     password = hashlib.sha224(password)
     password = password.hexdigest()
-    age = userinfo["age"]
-    height = userinfo["height"]
-    weight = userinfo["weight"]
+    #age = userinfo["age"]
+    #height = userinfo["height"]
+    #weight = userinfo["weight"]
     #pfplink = userinfo["pfplink"]
-    pfplink = "empty for now"
+    #pfplink = "empty for now"
     music = userinfo["sel1"]
     #exercise = userinfo["sel2"]
     address = userinfo["address"]
@@ -55,7 +55,7 @@ def create_account(userinfo):
     last_accessed = 0
     #print "Error. Account not created\n"
     #return ""
-    c.execute(command1, (username, password, pfplink, music, address, last_accessed))
+    c.execute(command1, (username, password, music, address, last_accessed))
 
     #Create User Schedule Table
     command2 = "CREATE TABLE " + username + "(time INT PRIMARY KEY, activity TEXT, music TEXT);"
