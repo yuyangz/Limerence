@@ -244,8 +244,8 @@ def get_activ_music(username, time):
         print ("Time: " + str(hour))
         print ("Activity: ")
         print sched[hour]
-        return sched[hour]
         '''
+        return sched[hour]
     print "No Schedule Found"
 
 def edit_sched(username, time, new_val):

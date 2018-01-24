@@ -7,6 +7,8 @@ from time import localtime
 from util import eventbrite
 import os, cgi, hashlib, sys
 
+####replace localtime()[3] with 6 to hardcode 6am
+
 if sys.platform != 'win32':			# Windows does not support SIGPIPE
 	from signal import signal, SIGPIPE, SIG_DFL
 	signal(SIGPIPE, SIG_DFL)
@@ -19,6 +21,7 @@ global g_schedule
 global g_song_lists
 g_food_rec = {}
 g_events = []
+g_exercise = []
 
 
 @app.route("/scheduler")
@@ -74,7 +77,8 @@ def rm_schedule():
 @app.route("/recommendations")
 @app.route("/recommendations/<pref>/<new_val>")
 @app.route("/recommendations/<pref>/<new_val>/<is_event>")
-def recommendations(pref=None, new_val=None, is_event="False"):
+@app.route("/recommendations/<pref>/<new_val>/<is_event>/<is_exercise>")
+def recommendations(pref=None, new_val=None, is_event="False", is_exercise="False"):
     if "username" not in session.keys():
         return redirect(url_for("login"))
     username = session["username"]
@@ -88,8 +92,15 @@ def recommendations(pref=None, new_val=None, is_event="False"):
         for cat in cats:
             if pref == cat:
                 if is_event == "True":
+                    global g_events
                     if int(new_val) <= len(g_events):
                         new_val = g_events[int(new_val)]
+                    else:
+                        print "CANNOT EDIT SCHED"
+                if is_exercise == "True":
+                    global g_exercise
+                    if int(new_val) < len(g_exercise):
+                        new_val = g_exercise[int(new_val)]
                     else:
                         print "CANNOT EDIT SCHED"
                 curr[pref] = new_val
@@ -101,12 +112,10 @@ def recommendations(pref=None, new_val=None, is_event="False"):
         return redirect(url_for("scheduler"))
     rec_songs = schedule.get_music(time.localtime()[3], username, False)
     sch = [] #List Of Activities
-    exercises = []
-    for i in range(7):
-        exercises.append(schedule.get_workout())
     zipcode = db.get_user_pref(username, "address")
     events = eventbrite.get_events(zipcode)["events"][:5]
     global g_events
+    global g_exercise
     for event in events:
         text = (event["description"]["text"] + " <br><a href='" + event["url"] + "'>LINK</a>")
         sch.append(text)
@@ -121,7 +130,7 @@ def recommendations(pref=None, new_val=None, is_event="False"):
         #print i
         food_data = schedule.get_food(path)
         foods[food_data[0]] = food_data[1]
-        exercises.append(schedule.get_workout())
+        g_exercise.append(schedule.get_workout())
     clock = range(localtime()[3], 22)
     global g_food_rec
     g_food_rec = foods
@@ -129,7 +138,7 @@ def recommendations(pref=None, new_val=None, is_event="False"):
     #print (exercises)
     if len(clock) == 0:
 		clock = 0
-    return render_template("recommendations.html", name=username.title(), sch=sch, exercises = exercises, songs=rec_songs, clock = clock, foods=foods)
+    return render_template("recommendations.html", name=username.title(), sch=sch, exercises = g_exercise, songs=rec_songs, clock = clock, foods=foods)
 
 
 @app.route("/")

@@ -201,12 +201,12 @@ def place_sleep(schedule, song_list, username):
 
 def attempt_events(schedule, username, start_time):
 	zipcode = person_detail["zipcode"]
-	event = random.choice(eventbrite.get_events(zipcode)["top_match_events"])
+	event = random.choice(eventbrite.get_events(zipcode)["events"])
 	for i in range(int(start_time), 22):
 		if schedule[i] == EMPTY:
 			schedule[i] = ("EVENT: <br>" + event["description"]["text"] + " <br><a href='" + event["url"] + "'>LINK</a>")
 
-
+###CHANGE CURR_TIME TO time.localtime()
 def new_schedule(username, curr_time=time.localtime()):
 	print('It is currently {:02}:{:02}'.format(curr_time[3], curr_time[4]))
 	schedule = [EMPTY] * 24  # military standard time
