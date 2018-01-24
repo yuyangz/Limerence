@@ -13,6 +13,8 @@ Frontend is primarily managed through HTML and CSS.
 
 Backend is managed through SQLite for databases. Various APIs (below) are used to retrieve information to create a custom-made schedule for the user.
 
+[Watch out Demo here](https://youtu.be/WDz5c8pCyVQ)
+
 ## Keys to procure in advance
 
 Be sure that keys.txt is in the root of the repository!
