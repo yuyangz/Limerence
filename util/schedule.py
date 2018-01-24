@@ -204,7 +204,7 @@ def attempt_events(schedule, username, start_time):
 	event = random.choice(eventbrite.get_events(zipcode)["top_match_events"])
 	for i in range(int(start_time), 22):
 		if schedule[i] == EMPTY:
-			schedule[i] = ("EVENT: <br>" + event["description"]["html"] + " <br><a href='" + event["url"] + "'>LINK</a>")
+			schedule[i] = ("EVENT: <br>" + event["description"]["text"] + " <br><a href='" + event["url"] + "'>LINK</a>")
 
 
 def new_schedule(username, curr_time=time.localtime()):

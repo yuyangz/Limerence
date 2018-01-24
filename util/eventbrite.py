@@ -8,7 +8,7 @@ def get_events(zipcode):
     global APP_KEY
     if APP_KEY == "":
         APP_KEY = keys.get_key("eventbrite")[0]
-    events_url = "https://www.eventbriteapi.com/v3/events/search/?token=" + APP_KEY + "&q=outdoors&location.address=<zipcode>&location.within=50mi"
+    events_url = "https://www.eventbriteapi.com/v3/events/search/?token=" + APP_KEY + "&location.address=<zipcode>&location.within=50mi"
     retList = []
     print events_url
     events = events_url.replace("<zipcode>", str(zipcode))

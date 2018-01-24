@@ -18,6 +18,7 @@ app.secret_key = os.urandom(32)
 global g_schedule
 global g_song_lists
 g_food_rec = {}
+g_events = []
 
 
 @app.route("/scheduler")
@@ -72,7 +73,8 @@ def rm_schedule():
 
 @app.route("/recommendations")
 @app.route("/recommendations/<pref>/<new_val>")
-def recommendations(pref=None, new_val=None):
+@app.route("/recommendations/<pref>/<new_val>/<is_event>")
+def recommendations(pref=None, new_val=None, is_event="False"):
     if "username" not in session.keys():
         return redirect(url_for("login"))
     username = session["username"]
@@ -85,6 +87,11 @@ def recommendations(pref=None, new_val=None):
         curr = db.get_activ_music(username, int(new_time))
         for cat in cats:
             if pref == cat:
+                if is_event == "True":
+                    if int(new_val) <= len(g_events):
+                        new_val = g_events[int(new_val)]
+                    else:
+                        print "CANNOT EDIT SCHED"
                 curr[pref] = new_val
                 break
         db.edit_sched(username, new_time, curr)
@@ -94,7 +101,16 @@ def recommendations(pref=None, new_val=None):
         return redirect(url_for("scheduler"))
     rec_songs = schedule.get_music(time.localtime()[3], username, False)
     sch = [] #List Of Activities
-    exercises = [] #exercises
+    exercises = []
+    for i in range(7):
+        exercises.append(schedule.get_workout())
+    zipcode = db.get_user_pref(username, "address")
+    events = eventbrite.get_events(zipcode)["events"][:5]
+    global g_events
+    for event in events:
+        text = (event["description"]["text"] + " <br><a href='" + event["url"] + "'>LINK</a>")
+        sch.append(text)
+        g_events.append(text)
     foods = {}
 	#If Breakfast time
     if(time.localtime()[3] < 7):
@@ -113,7 +129,7 @@ def recommendations(pref=None, new_val=None):
     #print (exercises)
     if len(clock) == 0:
 		clock = 0
-    return render_template("recommendations.html", name=username.title(), exercises = exercises, sch=sch, songs=rec_songs, clock = clock, foods=foods)
+    return render_template("recommendations.html", name=username.title(), sch=sch, exercises = exercises, songs=rec_songs, clock = clock, foods=foods)
 
 
 @app.route("/")

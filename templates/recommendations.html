@@ -149,10 +149,10 @@
                 </th>
             </tr>
         </thead>
-        {% for c in sch %}
+        {% for d in sch %}
         <tbody>
             <tr>
-              <form action = "/recommendations/activity/{{ c }}">
+              <form action = "/recommendations/activity/{{ loop.index - 1 }}/True">
                 <td>
                     <center><a href="/rmSchedule?id={{i}}&sch={{sch}}&song={{song}}">
                         <button type="submit" class="btn btn-default btn-med">
@@ -177,7 +177,7 @@
                     "There are no more spots for this recommendation in your schedule"
                     {% endif %}
                 </td>
-                <td>{{c}}</td>
+                <td>{{ d|safe }}</td>
               </form>
             </tr>
             {% endfor %}
