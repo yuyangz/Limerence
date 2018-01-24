@@ -1,0 +1,10 @@
+#Edamam ID - Key
+
+
+#Spotify ID - Secret
+
+
+#OpenWeatherMap - Key
+
+#Eventbrite - Key
+
