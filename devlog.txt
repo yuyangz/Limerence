@@ -27,6 +27,11 @@ topherM -- 1999-12-31 23:59
 /////////// Zone of Reflection \\\\\\\\\\\
 ------------------------------------------
 OBSTACLES OVERCOME
+In terms of front end, we had issues regarding the height of the background.
+However, we soon realized that was because we were applying the background 
+to the divs itself and not the body. CSS was a bit of an issue too but that
+was mainly because the virtual environment did not refresh when we updated
+the file. 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 UNRESOLVED ISSUES
@@ -35,18 +40,32 @@ UNRESOLVED ISSUES
     - Two keys procured (api key and app key) but was unauthorized
     curl -i -H "Content-Type: application/json,x-app-id={insert key1},x-app-key={insert key2},x-remote-user-id=0" -X GET https://trackapi.nutritionix.com/v2/search/instant?query=watermelon
     {"message":"unauthorized","id":"42424e8c-5a5c-451f-98c4-b0f01fd77887"}
+- Background is in two parts.
+	As we have a div, this cuts off the background when the div ends.
+	Because of this, the part under the div would be white. However,
+	in order to fill that up we had to fill up the body itself. Due 
+	to that, there is two gradients overlapping.
+- Navbar still is not sticky.
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+Using Javascript to allow text to pop up was certainly a nice touch to 
+our home screen. While this was a minor touch, we have a button for food
+descriptions that brings you to the previous page. If the user were to be
+curious and simply change the URL, pressing the back button will bring them
+to whatever page they were at not necessarily the recommendations page.
+Adding keys.txt to gitignore prevents others from seeing our keys.
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Nutritionix API changed to back-up Edamam API (same functionality but requires two passes and more parsing)
+- Changed events API to Eventbrite.
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Stashing is dangerous (make sure you push everything you commit in due time!)
+- Putting the keys.txt under gitignore allows the keys to be ignored when pushing.
+- Divs are important to help keep everything equal/evenly spaced.
 ===========================================
 Everyone — 2017-12-14 to 2017-12-19 22:00
 ------------------------------
