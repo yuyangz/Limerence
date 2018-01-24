@@ -8,6 +8,7 @@ from . import eventbrite
 
 global last_person
 global person_detail
+g_events = None
 exercises = []
 
 last_person = None
@@ -101,7 +102,7 @@ def attempt_breakfast(schedule, song_list, breakfast_time, username):
 	if breakfast_time < 6:
 		breakfast_time = 6
 	breakfast_food = get_food("./static/breakfast.txt")
-	schedule[breakfast_time], song_list[breakfast_time] = (BREAKFAST + ": " + breakfast_food[0] + "Calories: " + str(breakfast_food[1]["calories"])), get_music(breakfast_time, username, True)
+	schedule[breakfast_time], song_list[breakfast_time] = (BREAKFAST + ": " + breakfast_food[0] + "<br>Calories: " + str(breakfast_food[1]["calories"])), get_music(breakfast_time, username, True)
 	return True
 
 
@@ -199,10 +200,18 @@ def place_sleep(schedule, song_list, username):
 	for hr in sleep_hrs_without_music:
 		schedule[hr] = SLEEP
 
+def get_event():
+	global g_events
+	zipcode = person_detail["zipcode"]
+	if g_events == None:
+		g_events = eventbrite.get_events(zipcode)["events"]
+	event = random.choice(g_events)
+	return event
+
 def attempt_events(schedule, username, start_time):
 	zipcode = person_detail["zipcode"]
-	event = random.choice(eventbrite.get_events(zipcode)["events"])
 	for i in range(int(start_time), 22):
+		event = get_event()
 		if schedule[i] == EMPTY:
 			schedule[i] = ("EVENT: <br>" + event["description"]["text"] + " <br><a href='" + event["url"] + "'>LINK</a>")
 

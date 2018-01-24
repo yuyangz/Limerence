@@ -112,16 +112,14 @@ def recommendations(pref=None, new_val=None, is_event="False", is_exercise="Fals
             g_song_lists[new_time] = curr["music"]
         return redirect(url_for("scheduler"))
     rec_songs = schedule.get_music(time.localtime()[3], username, False)
-    sch = [] #List Of Activities
     zipcode = db.get_user_pref(username, "address")[0]
     forecast = weather.get_forecast(zipcode)[0]
-    events = eventbrite.get_events(zipcode)["events"][:5]
     global g_events
     global g_exercise
-    for event in events:
-        text = (event["description"]["text"] + " <br><a href='" + event["url"] + "'>LINK</a>")
-        sch.append(text)
-        g_events.append(text)
+    for i in range(5):
+		event = schedule.get_event()
+		text = (event["description"]["text"] + " <br><a href='" + event["url"] + "'>LINK</a>")
+		g_events.append(text)
     foods = {}
 	#If Breakfast time
     if(time.localtime()[3] < 7):
@@ -140,7 +138,7 @@ def recommendations(pref=None, new_val=None, is_event="False", is_exercise="Fals
     #print (exercises)
     if len(clock) == 0:
 		clock = 0
-    return render_template("recommendations.html", name=username.title(), sch=sch, exercises = g_exercise, songs=rec_songs, clock = clock, foods=foods, zipcode=zipcode, weather=forecast)
+    return render_template("recommendations.html", name=username.title(), sch=g_events, exercises = g_exercise, songs=rec_songs, clock = clock, foods=foods, zipcode=zipcode, weather=forecast)
 
 
 @app.route("/")
