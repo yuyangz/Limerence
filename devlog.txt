@@ -59,13 +59,14 @@ Adding keys.txt to gitignore prevents others from seeing our keys.
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Nutritionix API changed to back-up Edamam API (same functionality but requires two passes and more parsing)
-- Changed events API to Eventbrite.
+- Changed FourSquare API and Eventful API to Eventbrite.
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Stashing is dangerous (make sure you push everything you commit in due time!)
 - Putting the keys.txt under gitignore allows the keys to be ignored when pushing.
 - Divs are important to help keep everything equal/evenly spaced.
+- Planning is great but adaptable just as important (FourSquare remains in our history for interested developers)
 ===========================================
 Everyone — 2017-12-14 to 2017-12-19 22:00
 ------------------------------
@@ -360,3 +361,9 @@ Added food description page.
 Table for recommendations have been modified for separation of events.
 Saved recommendations can be found under profile.
 Calorie counter may be implemented through our own formulas.
+
+lamI -- 2018-01-24 00:48
+------------------------------
+- Updated Readme with a better summary and directions for procuring API keys
+- Updated Zone of Reflection
+- Recording for video demo (sorry for the lack of tone fluctuations, I haven't been able to hear myself due to a fever these past few days)
