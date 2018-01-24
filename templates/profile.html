@@ -54,41 +54,25 @@
 </div>
 
 <div class = "well">
-  <h3> Saved Recommendations </h3>
+  <h3>Calorie Tracker </h3>
   <table class = "table">
+    <h4>Total Calories Remaining: 2000</h4>
     <thead>
       <tr>
-        <th><h3>Remove Recommendation</h3></th>
-	<th><h3>Add to Schedule</h3></th>
-	<th><h3>Recommendation</h3></th>
-        <th><h3>Time?</h3></th>
+	<th><h3>Food</h3></th>
+	<th><h3>Calories</h3></th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a href="/something">
-		<button type="button" class="btn btn-default btn-med" value="Submit">
-		  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-		</button>
+        <td>
+	  Cocoa Puffs
 </td>
 	<td>
-	 
-		<button type="button" class="btn btn-default btn-med" value="Submit">
-		  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-		</button>
+	 too much	
 </td>
-	 <td>Situps</td>
-        <td>
-	  {% if clock != 0 %}
-          <select class="form-control" name="time_hr">
-            {% for j in clock %}
-              <option value={{j}}>{{j}}:00</option>
-            {% endfor %}
-          </select>
-        {% else %}
-          "There are no more spots for this recommendation in your schedule"
-          {% endif %}
-	</td>
+
+      
       </tr>
     </tbody>
   </table>
