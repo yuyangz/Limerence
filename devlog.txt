@@ -207,6 +207,14 @@ lamI -- 2018-01-11 23:17
 ------------------------------
 - Fixed error on refreshing (where clicking the "X" denoting a refresh removed the entire activity section) by making the schedule and song recommendations global
 
+zhangY —- 2018-01-11 23:30
+------------------------------
+Modified color scheme of page and formatting with divs. Did not push due to testing purposes.
+
+zhangY — 2018-01-13 23:00
+------------------------------
+Edited home page to format project description. Did not push once again due to testing purposes.
+
 anishS -- 2018-01-15 18:32
 ------------------------------
 Implemented SPOTIFY API
@@ -283,7 +291,7 @@ Refreshing Schedule doesn't create a new one
 zhangY —- 2018-01-21 23:00
 ------------------------------
 Updated create account form.
-	Password is now *** instead of displaying.
+	Password is now hashed instead of displaying.
 Added wells to schedule.
 Added a table to hold saved recommendations under profile.
 Attempted to modify recommendations but was unable to test due to backend issues.
@@ -323,3 +331,13 @@ Created home page for logged in users.
 Due to misunderstanding, certain aspects of templates had to be revived.
 	Recreated table for saved recommendations under profile.
 	Changed certain icons for aesthetic purpose.
+
+zhangY —- 2018-01-23 21:30
+------------------------------
+Attempted to create sticky navbar (did not accomplish).
+Added food description page. 
+	This page can be accessed through the recommendations page by clicking on “More Information” in regards to the food item.
+	This page will have a button that brings the user back to their previous page through means of Javascript.
+Table for recommendations have been modified for separation of events.
+Saved recommendations can be found under profile.
+Calorie counter may be implemented through our own formulas.
