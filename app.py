@@ -16,6 +16,7 @@ app.secret_key = os.urandom(32)
 
 global g_schedule
 global g_song_lists
+g_food_rec = {}
 
 
 @app.route("/scheduler")
@@ -105,6 +106,8 @@ def recommendations(pref=None, new_val=None):
         foods[food_data[0]] = food_data[1]
         exercises.append(schedule.get_workout())
     clock = range(localtime()[3], 22)
+    global g_food_rec
+    g_food_rec = foods
     print len(clock)
     #print (exercises)
     if len(clock) == 0:
@@ -204,11 +207,15 @@ def logged_out():
 
 @app.route("/userhome")
 def user_home():
-        return render_template("user_home.html")
+    return render_template("user_home.html")
 
-@app.route("/fooddescription")
-def food_description():
-        return render_template("food_descriptions.html")
+@app.route("/fooddescription/<name>")
+def food_description(name):
+    if name not in g_food_rec.keys():
+        print "FOOD INFO UNAVAILABLE"
+        return redirect(url_for("recommendations"))
+    food = g_food_rec[name]
+    return render_template("food_descriptions.html", food = food, name=name)
 
 
 if __name__ == "__main__":
