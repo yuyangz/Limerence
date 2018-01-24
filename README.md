@@ -7,7 +7,7 @@ Anish Shenoy: Database Expert/Flask Assistant
 
 Yuyang Zhang: PM/Frontend Expert
 
-Welcome to our lifestyle app, where users will be able to monitor and receive suggestions in regards to their dietary choices and exercise plan! After creating an account, you will be prompted to insert information about your music choice, basic profile information (e.g. age, weight), exercise preferences, etc. so that our schedule will be tailored to your needs. For example, we will be suggesting music, food choices, and exercise sets, listed in both a recommendations page and a user-specific schedule. Recommendations will be tailored to the user and will change depending on the time of day, weather, and the user's preferences. If you come across any recommendations you like, you may also insert them into your schedule. Without further ado, please enjoy the health benefits of our app!
+Welcome to our lifestyle app, where users will be able to monitor and receive suggestions in regards to their dietary choices and exercise plan! After creating an account, you will be prompted to insert information about your music choice and location so that our schedule will be tailored to your needs. For example, we will be suggesting music, food choices, and exercise sets, listed in both a recommendations page and a user-specific schedule. Recommendations will be tailored to the user and will change depending on the time of day, weather, and the user's preferences. If you come across any recommendations you like, you may also insert them into your schedule. Without further ado, please enjoy the health benefits of our app!
 
 Frontend is primarily managed through HTML and CSS.
 
@@ -40,7 +40,7 @@ Be sure that keys.txt is in the root of the repository!
 6. Copy the Application ID into a new line under "#Edamam ID - Key" in keys.txt
 7. Copy the Application Key into a new line under the Application ID in keys.txt
 
-[Eventbrite](https://foursquare.com/) - Our location API
+[Eventbrite](https://eventbrite.com/) - Our location API
 1. Create an account by clicking sign in in the top right corner [here](https://www.eventbrite.com/developer/v3/)
 2. Once you are signed in, head over to "my apps" [here](https://www.eventbrite.com/myaccount/apps/)
 3. Create a new app
