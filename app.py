@@ -3,6 +3,7 @@ from util import db
 from datetime import datetime
 import time
 from util import schedule
+from util import weather
 from time import localtime
 from util import eventbrite
 import os, cgi, hashlib, sys
@@ -112,7 +113,8 @@ def recommendations(pref=None, new_val=None, is_event="False", is_exercise="Fals
         return redirect(url_for("scheduler"))
     rec_songs = schedule.get_music(time.localtime()[3], username, False)
     sch = [] #List Of Activities
-    zipcode = db.get_user_pref(username, "address")
+    zipcode = db.get_user_pref(username, "address")[0]
+    forecast = weather.get_forecast(zipcode)[0]
     events = eventbrite.get_events(zipcode)["events"][:5]
     global g_events
     global g_exercise
@@ -138,7 +140,7 @@ def recommendations(pref=None, new_val=None, is_event="False", is_exercise="Fals
     #print (exercises)
     if len(clock) == 0:
 		clock = 0
-    return render_template("recommendations.html", name=username.title(), sch=sch, exercises = g_exercise, songs=rec_songs, clock = clock, foods=foods)
+    return render_template("recommendations.html", name=username.title(), sch=sch, exercises = g_exercise, songs=rec_songs, clock = clock, foods=foods, zipcode=zipcode, weather=forecast)
 
 
 @app.route("/")

@@ -38,7 +38,7 @@ def create_account(userinfo):
     c = get_cursor(db)
 
     #Add User Properties
-    command1 = "INSERT INTO accounts VALUES(?, ?, ?, ?, ?, ?, ? ,? ,?, ?, ?)"
+    command1 = "INSERT INTO accounts VALUES(?, ?, ?, ?, ?, ?)"
     username = userinfo["username"]
     password = userinfo["pwd1"]
     password = hashlib.sha224(password)
@@ -49,13 +49,13 @@ def create_account(userinfo):
     #pfplink = userinfo["pfplink"]
     pfplink = "empty for now"
     music = userinfo["sel1"]
-    exercise = userinfo["sel2"]
+    #exercise = userinfo["sel2"]
     address = userinfo["address"]
-    email = userinfo["email"]
+    #email = userinfo["email"]
     last_accessed = 0
     #print "Error. Account not created\n"
     #return ""
-    c.execute(command1, (username, password, age, height, weight, pfplink, music, exercise, address, email, last_accessed))
+    c.execute(command1, (username, password, pfplink, music, address, last_accessed))
 
     #Create User Schedule Table
     command2 = "CREATE TABLE " + username + "(time INT PRIMARY KEY, activity TEXT, music TEXT);"
@@ -99,7 +99,7 @@ def get_all_user_preferences(username):
     db = get_db()
     c = get_cursor(db)
     if check_account_exist(username):
-        pref_names = ["age", "height", "weight", "pfplink", "music", "excercise", "address", "email"]
+        pref_names = ["music", "address"]
         command = "SELECT {} FROM accounts WHERE username = ?".format(", ".join(pref_names))
         #print command
         prefs_tup = c.execute(command, (username, )).fetchone()
@@ -123,7 +123,7 @@ preference can be one of: "age", "height", "weight", "pfplink", "music", "excerc
 def get_user_pref(username, preference):
     db = get_db()
     c = get_cursor(db)
-    pref_names = ["age", "height", "weight", "pfplink", "music", "excercise", "address", "email", "last_accessed"]
+    pref_names = ["music", "excercise", "address", "last_accessed"]
     if check_account_exist(username):
         if preference in pref_names:
             command = "SELECT " + preference + " FROM accounts WHERE username = ?"
@@ -146,7 +146,7 @@ Returns the original value
 def edit_user_pref(username, preference, new_val):
     db = get_db()
     c = get_cursor(db)
-    pref_names = ["age", "height", "weight", "pfplink", "music", "excercise", "address", "email", "last_accessed"]
+    pref_names = ["music", "excercise", "address", "last_accessed"]
     if check_account_exist(username):
         if preference in pref_names:
             old_val = get_user_pref(username, preference)
@@ -165,7 +165,7 @@ def edit_all_user_pref(username, pref_dict):
     db = get_db()
     c = get_cursor(db)
     #print (pref_dict)
-    pref_names = ["age", "height", "weight", "pfplink", "music", "excercise", "address", "email"]
+    pref_names = ["music", "excercise", "address"]
     if check_account_exist(username):
         for pref in pref_dict:
             if pref in pref_names:
