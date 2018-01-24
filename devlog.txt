@@ -60,6 +60,7 @@ MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 - Nutritionix API changed to back-up Edamam API (same functionality but requires two passes and more parsing)
 - Changed FourSquare API and Eventful API to Eventbrite.
+- Removed calories counter and saving recommendations.
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -381,3 +382,12 @@ lamI -- 2018-01-24 00:48
 - Updated Readme with a better summary and directions for procuring API keys
 - Updated Zone of Reflection
 - Recording for video demo (sorry for the lack of tone fluctuations, I haven't been able to hear myself due to a fever these past few days)
+
+zhangY —- 2018-01-24 02:00
+------------------------------
+- Finalized video for project.
+	Edited through iMovies.
+- Finalized design document to reflect current state of project.
+- Sent keys and account information to TBM.
+- Removed calorie counter and saved recommendation due to time restriction.
+
