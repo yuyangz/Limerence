@@ -118,14 +118,14 @@ def recommendations(pref=None, new_val=None, is_event="False"):
     else:
 		path = "./static/lunchdinner.txt"
     for i in range(10):
-        print i
+        #print i
         food_data = schedule.get_food(path)
         foods[food_data[0]] = food_data[1]
         exercises.append(schedule.get_workout())
     clock = range(localtime()[3], 22)
     global g_food_rec
     g_food_rec = foods
-    print len(clock)
+    #print len(clock)
     #print (exercises)
     if len(clock) == 0:
 		clock = 0
@@ -134,7 +134,6 @@ def recommendations(pref=None, new_val=None, is_event="False"):
 
 @app.route("/")
 def hello_world():
-    print eventbrite.get_events(11372)
     '''
 	If session has a record of the correct username and password input, the user is logged in
 	Otherwise, the login page is displayed

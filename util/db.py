@@ -164,7 +164,7 @@ def edit_user_pref(username, preference, new_val):
 def edit_all_user_pref(username, pref_dict):
     db = get_db()
     c = get_cursor(db)
-    print (pref_dict)
+    #print (pref_dict)
     pref_names = ["age", "height", "weight", "pfplink", "music", "excercise", "address", "email"]
     if check_account_exist(username):
         for pref in pref_dict:
@@ -220,10 +220,12 @@ def reset_sched(username, sched_dict):
         for time in range(24):
             activity = sched_dict[time]["activity"]
             song = sched_dict[time]["music"]
+            '''
             print("Inserting: ")
             print("Time: " + str(time))
             print("Activity: " + activity)
             print("Song: " + song)
+            '''
             command = "INSERT INTO " + username + "(time, activity, music) VALUES(?, ?, ?);"
             c.execute(command, (time, activity, song))
     else:
@@ -238,10 +240,12 @@ def get_activ_music(username, time):
     hour = int(time)
     sched = get_schedule(username)
     if(sched != None and hour in sched):
+        '''
         print ("Time: " + str(hour))
         print ("Activity: ")
         print sched[hour]
         return sched[hour]
+        '''
     print "No Schedule Found"
 
 def edit_sched(username, time, new_val):
